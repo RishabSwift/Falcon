@@ -19,3 +19,18 @@ function appendScript(filepath) {
     ele.setAttribute("src", filepath);
     $('head').append(ele);
 }
+
+// fix assignment ASN is not defined thingy
+
+injectScript('./assets/js/dist/assignment.js')
+
+
+function injectScript(src) {
+    var s = document.createElement('script');
+// TODO: add "script.js" to web_accessible_resources in manifest.json
+    s.src = chrome.runtime.getURL(src);
+    s.onload = function () {
+        this.remove();
+    };
+    (document.head || document.documentElement).appendChild(s);
+}

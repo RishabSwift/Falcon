@@ -39,6 +39,7 @@
         "./assets/js/dist/jquery-2.2.4.min.js",
         "./assets/js/dist/jquery-ui.min.js",
         "./assets/js/dist/bootstrap.min.js",
+        "./assets/js/dist/assignment.js",
         "./custom.js",
         "./assets/js/dist/morpheus.min.js",
         "./assets/js/dist/gradebook-grade-summary.js",
@@ -47,7 +48,6 @@
         "./assets/js/dist/topbar.min.js",
         "./assets/js/dist/jquery.tablesorter.min.js",
         "./assets/js/dist/jquery.tablesorter.widgets.min.js",
-        "./assets/js/dist/assignment.js",
         "./assets/js/redirect_handler.js",
         "./assets/js/favourites.js",
         "./assets/js/pjax.js",
@@ -57,6 +57,8 @@
     }
   ],
   "web_accessible_resources": [
-    "/assets/fonts/*.ttf"
+    "/assets/fonts/*.ttf",
+    "/assets/js/dist/morpheus.min.js",
+    "/assets/js/dist/assignment.js"
   ]
 }
