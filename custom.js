@@ -21,7 +21,6 @@ function appendScript(filepath) {
 }
 
 // fix assignment ASN is not defined thingy
-
 injectScript('./assets/js/dist/assignment.js')
 
 
