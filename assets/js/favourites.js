@@ -48,7 +48,6 @@ function addCourseNameEditModal() {
  */
 async function autoPopulateCourseName() {
 
-
     let {customCourseNames} = await getStorageData('customCourseNames');
 
     let oldName = $('#old-course-name').html();
@@ -59,7 +58,8 @@ async function autoPopulateCourseName() {
         let course = customCourseNames.filter(item => {
             return item.oldName === oldName;
         })[0];
-        $('#custom-course-name-text').val(course.newName);
+
+        $('#custom-course-name-text').val(oldName === course.newName ? '' : course.newName);
     }
 
 }
@@ -79,6 +79,7 @@ async function saveCourseName(oldName, newName) {
         customCourseNames = [];
     }
 
+    // no name exists...
     if (!newName.trim()) {
         newName = oldName;
     }
@@ -157,11 +158,20 @@ async function updateLinksWithCustomNames() {
 
 $(document).ready(function () {
 // If they click the edit button...
+    addFavouritesClickEventListeners();
+
+    // make sure input is auto-focused
+    $('#edit-course-title-modal').on('shown.bs.modal', function() {
+        $('#custom-course-name-text').focus();
+    })
+});
+
+function addFavouritesClickEventListeners() {
     $('.edit-course-name-button').on('click', function () {
         $('#custom-course-name-text').val('');
         let link = $(this).siblings('div.fav-title').find('a');
         $('#old-course-name').html(link.attr('title'));
-        $('#custom-course-name-text').focus();
+
         $('#edit-course-title-modal').modal('show');
         // populate it with the new name...
         autoPopulateCourseName();
@@ -179,4 +189,18 @@ $(document).ready(function () {
         });
     })
 
-});
+    $('#custom-course-name-text').on('keypress', function (e) {
+        if(e.which === 13){
+
+            // Disable textbox to prevent multiple submit
+            $(this).attr("disabled", "disabled");
+
+            // simulate click
+            $('#save-custom-course-title-button').click();
+
+            //Enable the textbox again if needed.
+            $(this).removeAttr("disabled");
+        }
+    });
+
+}

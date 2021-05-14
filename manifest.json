@@ -22,7 +22,7 @@
     "storage",
     "tabs",
     "https://owl.uwo.ca/*/*",
-    "https://rishabbhatt.com/falcon/*"
+    "https://rishab.me/*"
   ],
   "content_scripts": [
     {
@@ -47,6 +47,7 @@
         "./assets/js/dist/topbar.min.js",
         "./assets/js/dist/jquery.tablesorter.min.js",
         "./assets/js/dist/jquery.tablesorter.widgets.min.js",
+        "./assets/js/dist/assignment.js",
         "./assets/js/redirect_handler.js",
         "./assets/js/favourites.js",
         "./assets/js/pjax.js",

@@ -45,6 +45,7 @@ function onPjaxSuccess() {
     addCourseNameEditModal();
     $('#selectSiteModal').addClass('outscreen');
     fixNavigationDropdownButtons();
+    addFavouritesClickEventListeners();
 }
 
 function onPjaxComplete() {
