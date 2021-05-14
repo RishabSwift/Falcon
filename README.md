@@ -56,13 +56,13 @@ Falcon works on top of OWL, and it makes no external requests to any external en
 
 
 ## Run into issues?
-If you run into any issues, then I'd really appreciate it if you could either create a <a href=""> new issue here </a> or email me at swift@hey.com.
+If you run into any issues, then I'd really appreciate it if you could either create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue here </a> or email me at swift@hey.com.
 
 If you encounter any issues that prevent you from using OWL normally, please disable or uninstall Falcon until it is fixed.
 
 
 ## Contribution
-Feel free to fork it / create a pull request! If you have any questions, ideas, or concerns, please send them over to swift@hey.com or create a <a href=""> new issue </a>.
+Feel free to fork it / create a pull request! If you have any questions, ideas, or concerns, please send them over to swift@hey.com or create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue </a>.
 
 
 ## License
