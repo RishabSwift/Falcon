@@ -46,6 +46,7 @@ function onPjaxSuccess() {
     $('#selectSiteModal').addClass('outscreen');
     fixNavigationDropdownButtons();
     addFavouritesClickEventListeners();
+    autoDetectDarkMode();
 }
 
 function onPjaxComplete() {

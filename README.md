@@ -4,6 +4,8 @@
 
 Falcon immensely enhances the user experience on OWL. With Falcon, OWL loads over **65% faster** on average. Falcon also improves the visual layout of OWL (including styling of buttons, forms, etc.) Falcon operates completely on the front-end and has no connection to the back-end.
 
+Falcon is available for install on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a>, and is coming soon for Mozilla Firefox and Safari.
+
 ## Features
 Falcon enhances the OWL experience and offers many new features that are not available on OWL. Some of the features are highlighted below:
 
@@ -12,6 +14,9 @@ Falcon enhances the OWL experience and offers many new features that are not ava
 
 -----
 
+:white_check_mark: **Dark Mode!**
+
+<img src="/assets/images/dark-mode.png"/>
 
 :white_check_mark: **Load pages without refreshing!**
 
@@ -24,6 +29,12 @@ When you navigate OWL, it will be much faster because a full refresh is not done
 Especially useful when you're just starting a new semester, and you're not used to the course codes yet.
 
 <img src="/assets/images/change-name.gif"/>
+
+:white_check_mark: **Instant Search / Sort Announcements, Assignments, etc**
+
+OWL offers sorting of announcements, assignments, etc. but it takes a *full* page refresh just to sort, making it an awful experience. Falcon sorts *instantly* while allowing you to search instantly. Falcon also allows you to search tables, too.
+
+<img src="/assets/images/sort-and-search-tables.png"/>
 
 - [ ] **Faster resource page load.**
 
@@ -40,7 +51,9 @@ OWL currently has no checks in place to ensure that a resource is not loaded mor
 Of course, the features listed here are the main features you can visually interact with / see on OWL. There are many minor enhancements to OWL itself that Falcon makes that improves the user experience. One of which is a more modern and updated look without taking away from the OWL you are familiar with.
 
 ## Installation
-Until Falcon is submitted to the Chrome Extension store, you will need to manually install it. It's really easy!
+Falcon is available on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a> for easy install.
+
+You can also install it manually as well. It's pretty straight forward!
 
 1. Clone or download this project as a Zip file, and extract it
 2. Go to `chrome://extensions` and toggle on `Developer Mode` on the top right
@@ -56,13 +69,13 @@ Falcon works on top of OWL, and it makes no external requests to any external en
 
 
 ## Run into issues?
-If you run into any issues, then I'd really appreciate it if you could either create a <a href=""> new issue here </a> or email me at swift@hey.com.
+If you run into any issues, then I'd really appreciate it if you could either create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue here </a> or email me at swift@hey.com.
 
 If you encounter any issues that prevent you from using OWL normally, please disable or uninstall Falcon until it is fixed.
 
 
 ## Contribution
-Feel free to fork it / create a pull request! If you have any questions, ideas, or concerns, please send them over to swift@hey.com or create a <a href=""> new issue </a>.
+Feel free to fork it / create a pull request! If you have any questions, ideas, or concerns, please send them over to swift@hey.com or create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue </a>.
 
 
 ## License

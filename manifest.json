@@ -1,7 +1,7 @@
 {
   "name": "Falcon",
   "description": "Add various new functionalities and improvements to Western's OWL site",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "icons": {
     "16": "./assets/images/falcon-16x16.png",
@@ -28,19 +28,17 @@
     {
       "matches": ["https://owl.uwo.ca/*"],
       "css": [
-        "./assets/css/styles.css",
-        "./assets/css/owl-components.css",
-        "./assets/css/lesson-builder.css",
-        "./assets/css/lesson-builder-checklist.css",
-        "./assets/css/tablesorter-bs4.min.css",
+        "./assets/css/preload.css",
         "./assets/css/helper.css"
       ],
+
       "js": [
         "./assets/js/dist/jquery-2.2.4.min.js",
         "./assets/js/dist/jquery-ui.min.js",
         "./assets/js/dist/bootstrap.min.js",
         "./assets/js/dist/assignment.js",
         "./custom.js",
+        "/assets/js/dark_mode.js",
         "./assets/js/dist/morpheus.min.js",
         "./assets/js/dist/gradebook-grade-summary.js",
         "./assets/js/dist/pjax.min.js",
@@ -48,17 +46,26 @@
         "./assets/js/dist/topbar.min.js",
         "./assets/js/dist/jquery.tablesorter.min.js",
         "./assets/js/dist/jquery.tablesorter.widgets.min.js",
+        "./assets/js/dist/darkreader.min.js",
         "./assets/js/redirect_handler.js",
         "./assets/js/favourites.js",
         "./assets/js/pjax.js",
         "./foreground.js"
       ],
       "run_at":    "document_idle"
+
     }
   ],
   "web_accessible_resources": [
     "/assets/fonts/*.ttf",
     "/assets/js/dist/morpheus.min.js",
-    "/assets/js/dist/assignment.js"
+    "/assets/js/dist/assignment.js",
+    "/assets/css/styles-dark.css",
+    "/assets/css/styles.css",
+    "/assets/css/owl-components.css",
+    "/assets/css/lesson-builder.css",
+    "/assets/css/lesson-builder-checklist.css",
+    "/assets/css/tablesorter-bs4.min.css",
+    "/assets/css/helper.css"
   ]
 }
