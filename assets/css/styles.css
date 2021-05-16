@@ -117,3 +117,9 @@ button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper
     opacity: 1 !important;
 }
 
+#mastLogin #loginForm {
+    border-left: 1px solid #5f5f5f;
+    padding-left: 15px !important;
+    margin-left: 15px !important;
+}
+

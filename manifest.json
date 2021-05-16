@@ -37,6 +37,7 @@
         "./assets/js/dist/jquery-ui.min.js",
         "./assets/js/dist/bootstrap.min.js",
         "./assets/js/dist/assignment.js",
+        "./assets/js/dist/alpine.min.js",
         "./custom.js",
         "/assets/js/dark_mode.js",
         "./assets/js/dist/morpheus.min.js",
@@ -51,6 +52,7 @@
         "./assets/js/favourites.js",
         "./assets/js/pjax.js",
         "./foreground.js"
+
       ],
       "run_at":    "document_idle"
 
