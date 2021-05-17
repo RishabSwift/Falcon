@@ -52,7 +52,7 @@ function injectRawScript() {
    $(`<script type="text/x-mathjax-config">
        MathJax.Hub.Config({
        messageStyle: "none",
-       tex2jax:  { inlineMath: [['\\\\(','\\\\)']] }
+       tex2jax: { inlineMath: [['\\(','\\)']] }
    });
    </script>`).appendTo(document.head);
     //
