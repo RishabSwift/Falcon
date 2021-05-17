@@ -13,19 +13,23 @@ $(document).ready(function () {
 
 async function enableDarkMode() {
     await setStorageData({darkMode: true})
+    $('#dark-mode-toggle').attr('data-dark-mode-enabled', true);
 
     let url = './assets/css/styles-dark.css';
     if ($('.darkmode-style').length === 0) {
         injectStyle(url, 'darkmode-style');
     }
 
-    // inject to iframe...
-    injectStyleToiFrame(url, 'darkmode-style')
+    if ($('#dark-mode-toggle').attr('data-dark-mode-enabled') === "true") { // saved as string literal
+        injectStyleToiFrame(url, 'darkmode-style')
+    }
     $('#wciframe').css('filter', 'invert(1)')
+    // inject to iframe...
 }
 
 async function disableDarkMode() {
     await setStorageData({darkMode: false})
+    $('#dark-mode-toggle').attr('data-dark-mode-enabled', false);
     $('.darkmode-style').remove();
     $('#wciframe').css('filter', '')
     $('.portletMainIframe').contents().find('.darkmode-style').remove();

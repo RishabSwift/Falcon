@@ -66,16 +66,6 @@
     }
   ],
   "web_accessible_resources": [
-    "/assets/fonts/*",
-    "/assets/js/dist/morpheus.min.js",
-    "/assets/js/dist/assignment.js",
-    "/assets/css/styles-dark.css",
-    "/assets/css/styles.css",
-    "/assets/css/owl-components.css",
-    "/assets/css/lesson-builder.css",
-    "/assets/css/lesson-builder-checklist.css",
-    "/assets/css/tablesorter-bs4.min.css",
-    "/assets/css/helper.css",
-    "/assetes/css/dx.darkviolet.css"
+    "/assets/*"
   ]
 }

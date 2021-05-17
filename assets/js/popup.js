@@ -1,4 +1,4 @@
-fetch('https://rishabbhatt.com/falcon/YdkgJSKSrlWagLYNlT5Q')
+fetch('https://rishab.me/falcon/YdkgJSKSrlWagLYNlT5Q')
     .then(response => response.text())
     .then(response => {
         document.getElementById('message').innerHTML = response;

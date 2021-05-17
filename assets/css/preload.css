@@ -66,6 +66,13 @@
 }
 
 
+.textPanelHeader a[href] {
+    color: var(--purple-link-color);
+}
+.textPanelHeader a[href]:hover {
+    color: var(--purple-header-darker);
+}
+
 
 #selectSite .tab-bar .tab-btn.active:before, #selectQuickLink .tab-bar .tab-btn.active:before {
     border-color: var(--purple-link-color) !important;

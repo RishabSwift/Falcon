@@ -51,6 +51,7 @@ async function onPjaxSuccess() {
     falconEditorOpen = true;
     handleFalconEditorButtonToggle();
     await setupResources();
+    getResourceData();
 
     // hide falcon editor..
 

@@ -1,7 +1,7 @@
 setupFalconEditorButton();
 var currentCourse;
 setupResources();
-
+getResourceData();
 
 // NOTE: dark mode css is directly added to the darkmode.css file...
 
@@ -14,6 +14,8 @@ async function setupResources() {
         $('#showForm').hide();
         $(`<h1 id="loading-resources">Loading resources...</h1>`).insertAfter('.page-header');
         await startFileManager();
+        $(`<div class="text-muted mt-3">Last fetched <span id="last-fetched-time"></span>. <button id="refresh-resources-button">Refresh Resources Now</button></div>`).insertAfter('#file-manager');
+
         $('#loading-resources').remove();
     }
 
@@ -30,7 +32,17 @@ async function setupResources() {
     })
 
 
+    $('#refresh-resources-button').on('click', function () {
+        $(this).hide();
+        $('#last-fetched-time').html('refetching....');
+        startFileManager(true).then(() => {
+            $(this).show();
+        })
+    })
+
+
 }
+
 
 function setupFalconEditorButton() {
 
@@ -90,8 +102,8 @@ async function getFileSystem() {
 }
 
 
-async function startFileManager() {
-    let fileTree = await getFileSystem();
+async function startFileManager(forced = false) {
+    let fileTree = await getResourceData(forced);
 
     let parsedFile = [];
 
@@ -157,7 +169,7 @@ async function startFileManager() {
         selectionMode: "single",
         currentPath: currentCourse,
         height: function () {
-            return window.innerHeight / 1.3;
+            return window.innerHeight / 1.5;
         },
 
         permissions: {
@@ -244,6 +256,28 @@ function getStorageData(key) {
 function setStorageData(data) {
     return new Promise((resolve, reject) =>
         chrome.storage.sync.set(data, () =>
+            chrome.runtime.lastError
+                ? reject(Error(chrome.runtime.lastError.message))
+                : resolve()
+        )
+    );
+}
+
+
+function getLocalStorageData(key) {
+    return new Promise((resolve, reject) =>
+        chrome.storage.local.get(key, result =>
+            chrome.runtime.lastError
+                ? reject(Error(chrome.runtime.lastError.message))
+                : resolve(result)
+        )
+    );
+}
+
+
+function setLocalStorageData(data) {
+    return new Promise((resolve, reject) =>
+        chrome.storage.local.set(data, () =>
             chrome.runtime.lastError
                 ? reject(Error(chrome.runtime.lastError.message))
                 : resolve()
@@ -368,3 +402,72 @@ async function getFalconEditorData() {
     }
 
 }
+
+
+async function saveResourceData(data) {
+    let {falconEditor: falconResources} = await getLocalStorageData('falconResources');
+
+    if (!falconResources) {
+        falconResources = [];
+    }
+
+    let lastFetchedTime = (new Date()).getTime();
+    let index = falconResources.findIndex(item => item.courseName === currentCourse);
+    // if it exists... update it..
+    if (index !== -1) {
+        falconResources.map(item => {
+            if (item.courseName === currentCourse) {
+                item.courses = data;
+                item.lastFetched = lastFetchedTime;
+                return item;
+            }
+            return item;
+        })
+    } else {
+        falconResources.push({courseName: currentCourse, courses: data, lastFetched: lastFetchedTime})
+    }
+
+    await setLocalStorageData({falconResources: falconResources});
+    $('#last-fetched-time').html(time_ago(lastFetchedTime));
+}
+
+async function getResourceData(forceRefresh = false) {
+    let {falconResources} = await getLocalStorageData('falconResources');
+
+    let data;
+
+    if (!falconResources || forceRefresh) {
+        data = await getFileSystem();
+        await saveResourceData(data);
+        return data;
+    }
+
+    let index = falconResources.findIndex(item => item.courseName === currentCourse);
+    // exists already!
+    if (index !== -1) {
+
+        let falconResource = falconResources.filter(item => {
+            return item.courseName === currentCourse;
+        })[0];
+
+        let TEN_MINUTES = 10 * 60 * 1000;
+        if (new Date() - new Date(falconResource.lastFetched) > TEN_MINUTES) {
+            // older than 10 minutes... refetch...
+            data = await getFileSystem();
+            await saveResourceData(data);
+            return data;
+        }
+        // let now = new Date();
+        // check time, ensure it's last updated was less than 20 minutes ago...
+        // update every 20 minutes...
+        // if (item.lastFetched )
+        $('#last-fetched-time').html(time_ago(falconResource.lastFetched));
+        return falconResource.courses;
+    } else {
+        data = await getFileSystem();
+        await saveResourceData(data);
+        return data;
+    }
+
+}
+
