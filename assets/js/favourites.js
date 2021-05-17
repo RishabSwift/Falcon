@@ -20,8 +20,7 @@ let courseNameEditModal = `<div class="modal fade" style="z-index: 10000" id="ed
             </div>
         </div>
     </div>
-</div>
-`;
+</div>`;
 
 /**
  * Add edit buttons beside the course

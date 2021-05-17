@@ -9,7 +9,6 @@ if (typeof Handlebars == 'undefined') {
     appendScript('https://owl.uwo.ca/library/webjars/handlebars/4.0.6/handlebars.runtime.min.js?version=20_2-owl1');
 }
 
-
 function appendScript(filepath) {
     if ($('head script[src="' + filepath + '"]').length > 0)
         return;
@@ -23,6 +22,7 @@ function appendScript(filepath) {
 // fix assignment ASN is not defined thingy
 injectScript('./assets/js/dist/assignment.js')
 injectRawScript();
+reparseMathLatex();
 injectOwlScript('/library/js/mathjax/MathJax.js?config=default,Safe');
 injectStyle('./assets/css/styles.css');
 injectStyle('./assets/css/owl-components.css');
@@ -48,11 +48,20 @@ function injectOwlScript(src) {
     };
     (document.head || document.documentElement).appendChild(s);
 }
+
+function reparseMathLatex() {
+    let func = "function parseMath() {MathJax.Hub.Typeset()}";
+    var script = document.createElement('script');
+    script.setAttribute('type', 'application/javascript');
+    script.textContent = func;
+    document.head.appendChild(script);
+}
+
 function injectRawScript() {
    $(`<script type="text/x-mathjax-config">
        MathJax.Hub.Config({
        messageStyle: "none",
-       tex2jax: { inlineMath: [['\\(','\\)']] }
+       tex2jax:  { inlineMath: [['\\\\(','\\\\)']] }
    });
    </script>`).appendTo(document.head);
     //
@@ -157,4 +166,5 @@ function time_ago(time) {
         }
     return time;
 }
+
 

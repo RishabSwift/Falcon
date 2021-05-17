@@ -41,6 +41,7 @@ function setup() {
 
 async function onPjaxSuccess() {
     makeTableResponsive();
+
     forceRefreshPage(); // refresh if the page is gradebook...
     addCourseNameEditModal();
     $('#selectSiteModal').addClass('outscreen');
@@ -52,6 +53,9 @@ async function onPjaxSuccess() {
     handleFalconEditorButtonToggle();
     await setupResources();
     getResourceData();
+    // reparseMathLatex();
+    location.href="javascript:parseMath(); void 0"
+
 
     // hide falcon editor..
 
@@ -64,8 +68,6 @@ function onPjaxComplete() {
     fixAnnouncementPagination();
     fixNavigationDropdownButtons();
     updateLinksWithCustomNames();
-
-
 }
 
 
