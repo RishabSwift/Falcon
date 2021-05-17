@@ -30,16 +30,25 @@ Especially useful when you're just starting a new semester, and you're not used 
 
 <img src="/assets/images/change-name.gif"/>
 
+:white_check_mark: **Revamped Resources page.**
+
+The new resources page is extremely fast and offers an instant file-browsing experience. No more full page refresh just to browse folders. And if for any reason you need to access the old resources system, you are just one click away.
+
+<img src="/assets/images/resources.png"/>
+
+:white_check_mark: **Powerful Falcon Editor.**
+
+Falcon includes a new editor which you can use to create flow charts, diagrams, and more. Each course gets its own editor and changes are saved instantly. You can also export your diagrams as PNG, JPG or SVG.
+
+<img src="/assets/images/editor.png"/>
+
+
 :white_check_mark: **Instant Search / Sort Announcements, Assignments, etc**
 
 OWL offers sorting of announcements, assignments, etc. but it takes a *full* page refresh just to sort, making it an awful experience. Falcon sorts *instantly* while allowing you to search instantly. Falcon also allows you to search tables, too.
 
 <img src="/assets/images/sort-and-search-tables.png"/>
 
-- [ ] **Faster resource page load.**
-
-
-Currently, on OWL, the time it takes to load the resources page is directly proportionate to the number of files in that directory you are trying to load. Falcon aims to resolve that by ensuring that it loads linearly, regardless of the number of files.
 
 
 - [ ] **Lessen the initial page load.**

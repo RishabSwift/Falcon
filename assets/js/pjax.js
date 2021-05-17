@@ -20,7 +20,7 @@ function setup() {
 
 
     pjax = new Pjax({
-        elements: " a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin)",
+        elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose)",
         cacheBust: true,
         debug: false,
         selectors: [
@@ -39,7 +39,7 @@ function setup() {
     document.addEventListener('pjax:complete', onPjaxComplete)
 }
 
-function onPjaxSuccess() {
+async function onPjaxSuccess() {
     makeTableResponsive();
     forceRefreshPage(); // refresh if the page is gradebook...
     addCourseNameEditModal();
@@ -47,6 +47,15 @@ function onPjaxSuccess() {
     fixNavigationDropdownButtons();
     addFavouritesClickEventListeners();
     autoDetectDarkMode();
+    setupFalconEditorButton();
+    falconEditorOpen = true;
+    handleFalconEditorButtonToggle();
+    await setupResources();
+
+    // hide falcon editor..
+
+    // also hide the falcon editor...
+
 }
 
 function onPjaxComplete() {
@@ -54,6 +63,7 @@ function onPjaxComplete() {
     fixAnnouncementPagination();
     fixNavigationDropdownButtons();
     updateLinksWithCustomNames();
+
 
 }
 
@@ -186,19 +196,17 @@ function fixNavigationDropdownButtons() {
         $('ul .Mrphs-userNav__subnav').toggleClass('is-hidden');
     })
 
-    $('.otherSitesMenuClose').on('click', function() {
+    $('.otherSitesMenuClose').on('click', function () {
         $('#selectSiteModal').toggleClass('outscreen');
     })
 }
 
-$(document).mouseup(function(e)
-{
+$(document).mouseup(function (e) {
     var container = $("#loginUser");
 
     // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0)
-    {
-      $('.Mrphs-userNav__subnav').addClass('is-hidden');
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('.Mrphs-userNav__subnav').addClass('is-hidden');
     }
 
 });

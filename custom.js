@@ -22,7 +22,6 @@ function appendScript(filepath) {
 
 // fix assignment ASN is not defined thingy
 injectScript('./assets/js/dist/assignment.js')
-// injectScript('./assets/js/dark_mode.js');
 
 injectStyle('./assets/css/styles.css');
 injectStyle('./assets/css/owl-components.css');
@@ -64,6 +63,8 @@ function injectStyleToiFrame(link, className = null) {
 
     $('iframe').load(function () {
         $('.portletMainIframe').contents().find('body').append(s);
+        $('#wciframe').contents().find('body').append(s);
+
     });
 
 }

@@ -21,11 +21,13 @@ async function enableDarkMode() {
 
     // inject to iframe...
     injectStyleToiFrame(url, 'darkmode-style')
+    $('#wciframe').css('filter', 'invert(1)')
 }
 
 async function disableDarkMode() {
     await setStorageData({darkMode: false})
     $('.darkmode-style').remove();
+    $('#wciframe').css('filter', '')
     $('.portletMainIframe').contents().find('.darkmode-style').remove();
 }
 

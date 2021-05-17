@@ -24,11 +24,23 @@ button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper
 
 
 .progress-bar.progress-bar-empty {
-    background-image: radial-gradient(circle 1224px at 10.6% 8.8%, rgba(255, 255, 255, 1) 0%, rgba(153, 202, 251, 1) 100.2%) !important;
+    background: rgb(238, 246, 254) !important;
+    /*background-image: radial-gradient(circle 1224px at 10.6% 8.8%, rgba(255, 255, 255, 1) 0%, rgba(153, 202, 251, 1) 100.2%) !important;*/
 }
 
 .progress-bar.progress-bar-active.progress-bar-active {
     background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 1) 2%, rgba(5, 49, 255, 1) 100.7%) !important;
+}
+
+.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active  {
+    background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(5, 49, 255, 1) 2%, rgba(147, 15, 255, 1) 100.7%) !important;
+}
+.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active  + .progress-bar.progress-bar-active.progress-bar-active  {
+    background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 1) 2%, rgba(5, 49, 255, 1) 100.7%) !important;
+}
+
+.progress:nth-child(2) {
+    color: blue !important;
 }
 
 
