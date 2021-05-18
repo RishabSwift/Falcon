@@ -177,7 +177,6 @@ async function startFileManager(forced = false) {
         },
         onSelectedFileOpened: function (e) {
 
-            console.log(e.file.dataItem.url);
             if (isImage(e.file.dataItem.mimeType)) {
                 var popup = $("#photo-popup").dxPopup("instance");
                 console.log(e);
@@ -342,7 +341,6 @@ function setupFalconEditor() {
 
                 autoSaveTimeout = setTimeout(function () {
                     var data = e.component.export();
-                    console.log('updatinggg...');
                     autoSaveTimeout = -1;
                     saveFalconEdits(data).then(function () {
                         e.component.option("hasChanges", false);

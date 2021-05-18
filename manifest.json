@@ -21,8 +21,6 @@
   "permissions": [
     "storage",
     "tabs",
-    "webRequest",
-    "webRequestBlocking",
     "https://owl.uwo.ca/*/*",
     "https://rishab.me/*"
   ],
