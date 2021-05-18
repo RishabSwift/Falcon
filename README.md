@@ -6,52 +6,61 @@ Falcon immensely enhances the user experience on OWL. With Falcon, OWL loads ove
 
 Falcon is available for install on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a>, and is coming soon for Mozilla Firefox and Safari.
 
-## Features
-Falcon enhances the OWL experience and offers many new features that are not available on OWL. Some of the features are highlighted below:
+<img src="assets/images/overview.png">
 
-:white_check_mark: = **Feature implemented**
-- [ ] = **Feature currently in development / planned**
+
+# Features
+Falcon enhances the OWL experience and offers many new features that are not available on OWL. Some of the features are highlighted below:
 
 -----
 
-:white_check_mark: **Dark Mode!**
+### Dark Mode
 
-<img src="/assets/images/dark-mode.png"/>
+<img src="/assets/images/dark mode.png"/>
 
-:white_check_mark: **Load pages without refreshing!**
+-----
+
+### Load pages without refreshing
 
 When you navigate OWL, it will be much faster because a full refresh is not done every time you go to a new page. (This feature is disabled on Gradebook, Test/Quizzes, and Forum)
 
-<img src="/assets/images/pjax-requests.png"/>
+<img src="/assets/images/lightning fast pjax.png"/>
 
-:white_check_mark: **Edit course names!**
+-----
+
+### Edit course names
 
 Especially useful when you're just starting a new semester, and you're not used to the course codes yet.
 
-<img src="/assets/images/change-name.gif"/>
+<img src="/assets/images/Custom course names.png"/>
 
-:white_check_mark: **Revamped Resources page.**
+-----
+
+### Revamped Resources page
 
 The new resources page is extremely fast and offers an instant file-browsing experience. No more full page refresh just to browse folders. And if for any reason you need to access the old resources system, you are just one click away.
 
-<img src="/assets/images/resources.png"/>
+<img src="/assets/images/new resources.png"/>
 
-:white_check_mark: **Powerful Falcon Editor.**
+-----
+
+### Powerful New Editor
 
 Falcon includes a new editor which you can use to create flow charts, diagrams, and more. Each course gets its own editor and changes are saved instantly. You can also export your diagrams as PNG, JPG or SVG.
 
-<img src="/assets/images/editor.png"/>
+<img src="/assets/images/Falcon editor.png"/>
 
+-----
 
-:white_check_mark: **Instant Search / Sort Announcements, Assignments, etc**
+### Instant Search & Sorting of Announcements, Assignments, etc
 
 OWL offers sorting of announcements, assignments, etc. but it takes a *full* page refresh just to sort, making it an awful experience. Falcon sorts *instantly* while allowing you to search instantly. Falcon also allows you to search tables, too.
 
-<img src="/assets/images/sort-and-search-tables.png"/>
+<img src="/assets/images/sort-and-search-tables.png?cachebust"/>
 
 
-
-- [ ] **Lessen the initial page load.**
+----
+### Coming Soon: Lessen the initial page load
 
 OWL currently has no checks in place to ensure that a resource is not loaded more than once. This results in many libraries and packages being requested multiple times. Falcon will soon resolve this issue.
 
@@ -59,7 +68,7 @@ OWL currently has no checks in place to ensure that a resource is not loaded mor
 
 Of course, the features listed here are the main features you can visually interact with / see on OWL. There are many minor enhancements to OWL itself that Falcon makes that improves the user experience. One of which is a more modern and updated look without taking away from the OWL you are familiar with.
 
-## Installation
+# Installation
 Falcon is available on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a> for easy install.
 
 You can also install it manually as well. It's pretty straight forward!
@@ -71,23 +80,23 @@ You can also install it manually as well. It's pretty straight forward!
 
 If there are any updates, then you will need to manually re-install it. However, once it's available on the Chrome store, updating Falcon is just like updating any other Chrome extensions.
 
-## Security Notice
+# Security Notice
 Falcon was built with security in mind. Using Falcon does not compromise the security of OWL. In fact, it enhances certain security elements of OWL, particularly in the case of POST-based browsing.
 
 Falcon works on top of OWL, and it makes no external requests to any external endpoints (with the exception of asset files). Falcon also does not collect any inputs, form data, session data, or any other relevant information. You are free to inspect the source code!
 
 
-## Run into issues?
+# Run into issues?
 If you run into any issues, then I'd really appreciate it if you could either create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue here </a> or email me at swift@hey.com.
 
 If you encounter any issues that prevent you from using OWL normally, please disable or uninstall Falcon until it is fixed.
 
 
-## Contribution
+# Contribution
 Feel free to fork it / create a pull request! If you have any questions, ideas, or concerns, please send them over to swift@hey.com or create a <a href="https://github.com/RishabSwift/Falcon/issues"> new issue </a>.
 
 
-## License
+# License
 
 MIT License
 
