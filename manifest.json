@@ -31,31 +31,17 @@
         "./assets/css/preload.css",
         "./assets/css/helper.css",
         "./assets/css/dx.light.css",
-        "./assets/css/dx-diagram.css"
+        "./assets/css/dx-diagram.css",
+        "./assets/css/animate.min.css"
       ],
 
       "js": [
         "./assets/js/dist/jquery-2.2.4.min.js",
         "./assets/js/dist/jquery-ui.min.js",
         "./assets/js/dist/bootstrap.min.js",
-        "./assets/js/dist/assignment.js",
-        "./assets/js/dist/alpine.min.js",
         "./assets/js/dist/dx-diagram.min.js",
         "./assets/js/dist/dx.all.js",
-        "./custom.js",
-        "./assets/js/file_manager.js",
-        "/assets/js/dark_mode.js",
-        "./assets/js/dist/morpheus.min.js",
-        "./assets/js/dist/gradebook-grade-summary.js",
-        "./assets/js/dist/pjax.min.js",
-        "./assets/js/dist/rfs.min.js",
-        "./assets/js/dist/topbar.min.js",
-        "./assets/js/dist/jquery.tablesorter.min.js",
-        "./assets/js/dist/jquery.tablesorter.widgets.min.js",
-        "./assets/js/dist/darkreader.min.js",
-        "./assets/js/redirect_handler.js",
-        "./assets/js/favourites.js",
-        "./assets/js/pjax.js",
+        "./dist/main.js",
         "./foreground.js"
 
       ],
@@ -64,6 +50,7 @@
     }
   ],
   "web_accessible_resources": [
-    "/assets/*"
+    "/assets/*",
+    "/dist/*"
   ]
 }

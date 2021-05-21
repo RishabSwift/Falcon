@@ -14,6 +14,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     }
 })
 
+
 // function start(tabId) {
 //     chrome.tabs.get(tabId, currentTab => {
 //         if (/^https:\/\/owl\.uwo\.ca/.test(currentTab.url)) {

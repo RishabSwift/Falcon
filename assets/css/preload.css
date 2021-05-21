@@ -65,6 +65,11 @@
     background: var(--purple-nav-bg-color) !important;
 }
 
+:root {
+    --animate-duration: .3s !important;
+}
+
+
 
 .textPanelHeader a[href] {
     color: var(--purple-link-color);
@@ -233,9 +238,9 @@ ul.favoriteSiteList > li, #selectQuickLink > li {
     outline: none !important;
 }
 
-#selectSiteModal {
-    z-index: 150 !important;
-}
+/*#selectSiteModal {*/
+/*    z-index: 150 !important;*/
+/*}*/
 
 .tablesorter-icon.glyphicon.glyphicon-chevron-down,
 .tablesorter-icon.glyphicon.glyphicon-chevron-up,

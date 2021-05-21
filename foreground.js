@@ -1,6 +1,6 @@
 
-startFavourites();
-startPjax();
+// startFavourites();
+// startPjax();
 
 // DarkReader.enable({
 //     brightness: 100,

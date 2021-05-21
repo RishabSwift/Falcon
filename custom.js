@@ -40,18 +40,18 @@ function injectScript(src) {
     (document.head || document.documentElement).appendChild(s);
 }
 
-function injectOwlScript(src) {
-    var s = document.createElement('script');
-    s.src = src;
-    s.onload = function () {
-        // this.remove();
-    };
-    (document.head || document.documentElement).appendChild(s);
-}
+        function injectOwlScript(src) {
+            var s = document.createElement('script');
+            s.src = src;
+            s.onload = function () {
+                // this.remove();
+            };
+            (document.head || document.documentElement).appendChild(s);
+        }
 
-function reparseMathLatex() {
-    let func = "function parseMath() {MathJax.Hub.Typeset()}";
-    var script = document.createElement('script');
+    function reparseMathLatex() {
+        let func = "function parseMath() {MathJax.Hub.Typeset()}";
+        var script = document.createElement('script');
     script.setAttribute('type', 'application/javascript');
     script.textContent = func;
     document.head.appendChild(script);
