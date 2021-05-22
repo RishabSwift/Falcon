@@ -32,7 +32,8 @@
         "./assets/css/helper.css",
         "./assets/css/dx.light.css",
         "./assets/css/dx-diagram.css",
-        "./assets/css/animate.min.css"
+        "./assets/css/animate.min.css",
+        "./assets/fonts/feather.css"
       ],
 
       "js": [

@@ -25,12 +25,9 @@ class FalconEditor {
         }
 
         $('#falcon-editor-button').on('click', function () {
-            $('#falcon-editor-icon').addClass('fa-spinner fa-pulse').removeClass('fa-pencil');
-            // $('.Mrphs-pagebody').hide();
-            $('.Mrphs-pagebody').hide();
+            $('#falcon-editor-icon').addClass('fa-spin fe-loader').removeClass('fe-edit-2 fe-x');
             if (isOpen) {
                 $('#falcon-editor-title').html('Saving...');
-
                 self.saveFalconEdits(self.uiEditor.export()).then(item => {
                     $('#falcon-editor-title').html('Saved!');
                 })
@@ -40,10 +37,10 @@ class FalconEditor {
             setTimeout(function () {
                 isOpen = !isOpen;
                 if (isOpen) {
-
+                    $('.Mrphs-pagebody').hide();
                     $('a.Mrphs-toolsNav__menuitem--link').not('#falcon-editor-button').parent().hide();
                     $('#falcon-editor-title').html('Close Editor');
-                    $('#falcon-editor-icon').removeClass('fa-spinner fa-pulse fa-pencil').addClass('fa-close')
+                    $('#falcon-editor-icon').removeClass('fa-spin fe-loader fe-edit-2').addClass('fe-x')
                     $('#pageBody').append(`<div id="falcon-editor-diagram"></div>`)
                     self.setupEditor();
                     self.getEditorDataFromStorage();
@@ -56,7 +53,7 @@ class FalconEditor {
         function cleanupEditor() {
             $('#falcon-editor-title').html('Falcon Editor');
             $('a.Mrphs-toolsNav__menuitem--link').not('#falcon-editor-button').parent().show();
-            $('#falcon-editor-icon').removeClass('fa-spinner fa-pulse fa-close').addClass('fa-pencil')
+            $('#falcon-editor-icon').removeClass('fa-spin fe-loader fe-x').addClass('fe-edit-2')
             $('#falcon-editor-diagram').remove();
             $('.Mrphs-pagebody').show();
         }

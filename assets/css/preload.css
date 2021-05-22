@@ -54,6 +54,7 @@
     --purple-header-darker: #4c00c1;
     --text-color: #12263f;
     --white-color: #fffff;
+    --tab-hover-white-color: #ccd5db;
 }
 
 .btn-primary {
@@ -69,11 +70,52 @@
     --animate-duration: .3s !important;
 }
 
+.navIntraTool {
 
+}
+
+button:not(.btn-primary),
+a:not(.btn-primary).button,
+input[type="submit"]:not(.active),
+.Mrphs-toolTitleNav .Mrphs-toolTitleNav__link {
+    background: white !important;
+    /*box-shadow: 0 2px 5px -5px black !important;*/
+    /*border: 1px solid #d2d6da !important;*/
+}
+
+li.tab-btn.active,
+.navIntraTool li span.current {
+    color: var(--purple-link-color) !important;
+    border-top: none !important;
+    border-right: none !important;
+    font-weight: 600;
+    border-left: none !important;
+    padding: 0 20px !important;
+    border-bottom: 3px solid var(--purple-link-color) !important;
+}
+
+li.tab-btn:not(.active):hover,
+.navIntraTool li span a:hover {
+    border-bottom: 2px solid var(--tab-hover-white-color) !important;
+}
+
+li.tab-btn,
+.navIntraTool li span a {
+    border: none !important;
+    padding: 0 20px !important;
+    background: initial !important;
+}
+
+li.tab-btn:before,
+.navIntraTool li span a:before,
+.navIntraTool li span.current:before {
+    display: none !important;
+}
 
 .textPanelHeader a[href] {
     color: var(--purple-link-color);
 }
+
 .textPanelHeader a[href]:hover {
     color: var(--purple-header-darker);
 }
@@ -103,7 +145,6 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 
-
 .checklistLabel {
     font-weight: 500 !important;
 }
@@ -114,7 +155,7 @@ input[type=search]::-webkit-search-cancel-button {
 
 body, .itemclass, .link-div,
 h1, h2, h3, h4, h5, h6,
-#linkNav ul, a
+#linkNav ul, a:not(.Mrphs-sitesNav__dropdown):not(.Mrphs-sitesNav__favbtn):not(.fa),
 input, button {
     font-family: "Inter", sans-serif !important;
 }
@@ -132,6 +173,34 @@ input, button {
     background-image: radial-gradient(circle farthest-corner at 10% 20%, rgb(21 0 37) 0%, rgba(32, 45, 58, 1) 81.3%) !important;
 }
 
+#toolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title, #subSites ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title {
+    color: #3f4b5b;
+}
+
+
+#toolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--icon, #subSites ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--icon {
+    color: #0078ff !important;
+}
+
+/*Home panels*/
+.Mrphs-multipleTools .Mrphs-container.Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.Mrphs-multipleTools .Mrphs-container .Mrphs-container--toolTitleNav {
+    background-color: var(--white-color) !important;
+}
+
+
+.Mrphs-multipleTools .Mrphs-container {
+    border-radius: 10px !important;
+}
+
+.Mrphs-multipleTools .Mrphs-container .Mrphs-toolBody {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
 
 /* Override link colors */
 #toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link, #subSites ul li.is-current .Mrphs-toolsNav__menuitem--link,
@@ -142,12 +211,18 @@ input, button {
     color: var(--purple-link-color) !important;
 }
 
-#toolMenu ul li .Mrphs-toolsNav__menuitem--link:hover, #toolMenu ul li .Mrphs-toolsNav__menuitem--link:focus, #subSites ul li .Mrphs-toolsNav__menuitem--link:hover, #subSites ul li .Mrphs-toolsNav__menuitem--link:focus,
-#linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:focus, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:focus {
-    color: #6b0eff !important;
-    font-weight: 700 !important;
+#toolMenu ul li .Mrphs-toolsNav__menuitem--link:hover, #toolMenu ul li .Mrphs-toolsNav__menuitem--link:focus, #subSites ul li .Mrphs-toolsNav__menuitem--link:hover, #subSites ul li .Mrphs-toolsNav__menuitem--link:focus {
+    border-radius: 7px !important;
 }
 
+
+
+#linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:focus, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:focus {
+    color: #6b0eff !important;
+    font-weight: 600 !important;
+}
+
+a.btn-primary,
 button.btn-primary, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected, .act .active,
 #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .link-container, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__dropdown, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__favbtn {
     background: var(--purple-nav-bg-color) !important;
@@ -155,6 +230,7 @@ button.btn-primary, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate
     color: white !important;
 }
 
+a.btn-primary:hover,
 button.btn-primary:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button:hover, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected:hover, button.btn-primary:focus, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button:focus, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected:focus, .act .active:hover, .act .active:focus,
 #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .link-container:hover, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__dropdown:hover, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__favbtn:hover {
     background: #8025ff !important;
@@ -164,7 +240,22 @@ button.btn-primary:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_pa
 #toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link:before, #subSites ul li.is-current .Mrphs-toolsNav__menuitem--link:before,
 #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:hover:before, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:active:before, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:focus:before, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:hover:before, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:active:before, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:focus:before,
 .navIntraTool li span.current:before {
-    border-color: var(--purple-link-color) !important;
+    /*border-color: var(--purple-link-color) !important;*/
+    border: none !important;
+}
+
+
+#toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link, #subSites ul li.is-current .Mrphs-toolsNav__menuitem--link {
+    background-color: #ececec !important;
+    border-radius: 7px !important;
+}
+
+#toolMenu ul li.is-current, #subSites ul li.is-current {
+    margin: 1px 0 !important;
+}
+
+.Mrphs-toolsNav__menuitem--link:not(.is-current) {
+    margin: 0 7px !important;
 }
 
 
@@ -178,14 +269,14 @@ a[href]:focus {
 }
 
 
-table a[href],
+table a[href]:not(.btn-primary),
 .attachList a[href],
 .subpage-breadcrumb-div a[href] {
     color: var(--purple-link-color) !important;
     text-decoration: none !important;
 }
 
-table a[href]:hover,
+table a[href]:not(.btn-primary):hover,
 .attachList a[href]:hover,
 .subpage-breadcrumb-div a[href]:hover {
     color: #4b00ba !important;
@@ -195,6 +286,7 @@ table a[href]:hover,
 /* Sidebar font weight active link */
 #toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title, #subSites ul li.is-current .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title {
     font-weight: 600 !important;
+    border: none !important;
 }
 
 
@@ -244,8 +336,7 @@ ul.favoriteSiteList > li, #selectQuickLink > li {
 
 .tablesorter-icon.glyphicon.glyphicon-chevron-down,
 .tablesorter-icon.glyphicon.glyphicon-chevron-up,
-.tablesorter-icon.bootstrap-icon-unsorted
-{
+.tablesorter-icon.bootstrap-icon-unsorted {
     display: none !important;
 }
 

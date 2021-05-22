@@ -20,7 +20,7 @@ const Falcon = {
         Falcon.onSuccess();
 
         pjax = new Pjax({
-            elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose)",
+            elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose):not(#takeAssessmentForm):not(#compose)",
             cacheBust: true,
             debug: false,
             selectors: [
@@ -63,6 +63,7 @@ const Falcon = {
     },
 
     onSuccess: () => {
+        FalconInterfaceInjector.replaceIcons();
         FalconInterfaceInjector.initAnimations();
         Falcon.saveCourseId();
         new TableSorter();

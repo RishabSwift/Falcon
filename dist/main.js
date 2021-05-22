@@ -2882,9 +2882,7 @@ var FalconEditor = /*#__PURE__*/function () {
       }
 
       $('#falcon-editor-button').on('click', function () {
-        $('#falcon-editor-icon').addClass('fa-spinner fa-pulse').removeClass('fa-pencil'); // $('.Mrphs-pagebody').hide();
-
-        $('.Mrphs-pagebody').hide();
+        $('#falcon-editor-icon').addClass('fa-spin fe-loader').removeClass('fe-edit-2 fe-x');
 
         if (isOpen) {
           $('#falcon-editor-title').html('Saving...');
@@ -2898,9 +2896,10 @@ var FalconEditor = /*#__PURE__*/function () {
           isOpen = !isOpen;
 
           if (isOpen) {
+            $('.Mrphs-pagebody').hide();
             $('a.Mrphs-toolsNav__menuitem--link').not('#falcon-editor-button').parent().hide();
             $('#falcon-editor-title').html('Close Editor');
-            $('#falcon-editor-icon').removeClass('fa-spinner fa-pulse fa-pencil').addClass('fa-close');
+            $('#falcon-editor-icon').removeClass('fa-spin fe-loader fe-edit-2').addClass('fe-x');
             $('#pageBody').append("<div id=\"falcon-editor-diagram\"></div>");
             self.setupEditor();
             self.getEditorDataFromStorage();
@@ -2913,7 +2912,7 @@ var FalconEditor = /*#__PURE__*/function () {
       function cleanupEditor() {
         $('#falcon-editor-title').html('Falcon Editor');
         $('a.Mrphs-toolsNav__menuitem--link').not('#falcon-editor-button').parent().show();
-        $('#falcon-editor-icon').removeClass('fa-spinner fa-pulse fa-close').addClass('fa-pencil');
+        $('#falcon-editor-icon').removeClass('fa-spin fe-loader fe-x').addClass('fe-edit-2');
         $('#falcon-editor-diagram').remove();
         $('.Mrphs-pagebody').show();
       }
@@ -3098,7 +3097,7 @@ var Falcon = {
     // loaded only once on page load (regular page load, no pjax)
     Falcon.onSuccess();
     pjax = new (pjax__WEBPACK_IMPORTED_MODULE_0___default())({
-      elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose)",
+      elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose):not(#takeAssessmentForm):not(#compose)",
       cacheBust: true,
       debug: false,
       selectors: ["title", // "head",
@@ -3128,6 +3127,7 @@ var Falcon = {
     topbar__WEBPACK_IMPORTED_MODULE_1___default().show();
   },
   onSuccess: function onSuccess() {
+    _ui_ui_injector__WEBPACK_IMPORTED_MODULE_6__.default.replaceIcons();
     _ui_ui_injector__WEBPACK_IMPORTED_MODULE_6__.default.initAnimations();
     Falcon.saveCourseId();
     new _table_sorter__WEBPACK_IMPORTED_MODULE_2__.default();
@@ -3867,10 +3867,10 @@ var FalconInterfaceInjector = {
     $(".Mrphs-loginNav").prepend($dark_mode_button);
   },
   falconEditorButton: function falconEditorButton() {
-    $('.Mrphs-toolsNav__menu ul').append("<li><a href=\"javascript:;\" class=\"Mrphs-toolsNav__menuitem--link\" id=\"falcon-editor-button\" title=\"Double Click to open. A powerful diagram editor included with Falcon\"><span id=\"falcon-editor-icon\" class=\"Mrphs-toolsNav__menuitem--icon fa fa-pencil \"></span><span id=\"falcon-editor-title\" class=\"Mrphs-toolsNav__menuitem--title\">Falcon Editor</span></a></li>");
+    $('.Mrphs-toolsNav__menu ul').append("<li><a href=\"javascript:;\" class=\"Mrphs-toolsNav__menuitem--link\" id=\"falcon-editor-button\" title=\"Double Click to open. A powerful diagram editor included with Falcon\"><span id=\"falcon-editor-icon\" class=\"Mrphs-toolsNav__menuitem--icon fe fe-edit-2 \"></span><span id=\"falcon-editor-title\" class=\"Mrphs-toolsNav__menuitem--title\">Falcon Editor</span></a></li>");
   },
   courseEditButton: function courseEditButton() {
-    $('<a class="mr-4 edit-course-name-button" href="javascript:;"> <i class="fa fa-pencil"></i> Edit</a>').insertBefore('.toolMenus');
+    $('<a class="mr-4 edit-course-name-button" href="javascript:;"> <i class="fe fe-edit"></i> Edit</a>').insertBefore('.toolMenus');
   },
   courseEditModal: function courseEditModal() {
     var $courseNameEditModal = "<div class=\"modal fade\" style=\"z-index: 10000\" id=\"edit-course-title-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"edit-course-title-modal-label\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-sm\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <h4 class=\"modal-title\" id=\"edit-course-title-modal-label\">Edit title for this course</h5>\n            </div>\n            <div class=\"modal-body\">\n                Falcon allows you to give this course <span class=\"badge\" id=\"old-course-name\">ENGSCI 4498F 001 SP21</span> a custom name.\n\n                <div class=\"row mt-4\">\n                    <div class=\"col-md-12\">\n                        <input autofocus type=\"text\" id=\"custom-course-name-text\" class=\"form-control\" placeholder=\"E.g. Physics\">\n                        <small class=\"help-block\">Leave empty to reset to normal.</small>\n                    </div>\n                </div>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n                <button type=\"button\" id=\"save-custom-course-title-button\" class=\"btn btn-primary\">Save Title</button>\n            </div>\n        </div>\n    </div>\n</div>";
@@ -3888,6 +3888,63 @@ var FalconInterfaceInjector = {
   },
   initAnimations: function initAnimations() {
     $('.Mrphs-pagebody').addClass('animate__animated animate__fadeIn');
+  },
+  // replace all font-awesome icons with feather-icons
+  replaceIcons: function replaceIcons() {
+    var icons = {
+      'icon-sakai--sakai-iframe-site': 'fe fe-list',
+      'icon-sakai--sakai-syllabus': 'fe fe-map',
+      'icon-sakai--sakai-lessonbuildertool': 'fe fe-book',
+      'icon-sakai--sakai-samigo': 'fe fe-check-circle',
+      'fa fa-video-camera': 'fe fe-video',
+      'fa fa-play': 'fe fe-play',
+      'icon-sakai--sakai-siteinfo': 'fe fe-info',
+      'icon-sakai--sakai-gradebookng': 'fe fe-grid',
+      'icon-sakai--sakai-schedule': 'fe fe-calendar',
+      'icon-sakai--sakai-resources': 'fe fe-folder-plus',
+      'icon-sakai--sakai-web-168': 'fe fe-globe',
+      'icon-sakai--sakai-researchguideslti': 'fe fe-globe',
+      'icon-sakai--sakai-basiclti': 'fe fe-globe',
+      'icon-sakai--sakai-poll': 'fe fe-bar-chart-2',
+      'icon-sakai--sakai-messages': 'fe fe-inbox',
+      'icon-sakai--help': 'fe fe-help-circle',
+      'icon-sakai--sakai-assignment-grades': 'fe fe-file-text',
+      'icon-sakai--sakai-forums': 'fe fe-message-circle',
+      'fa fa-eye': 'fe fe-eye',
+      'fa fa-home': 'fe fe-home',
+      'icon-sakai--sakai-iframe': 'fe fe-globe',
+      'icon-sakai--sakai-signup': 'fe fe-user-plus',
+      'icon-sakai--sakai-dropbox': 'fe fe-upload-cloud',
+      'icon-sakai--sakai-singleuser': 'fe fe-user',
+      'icon-sakai--sakai-preferences': 'fe fe-settings',
+      'icon-sakai--sakai-sitesetup': 'fe fe-sliders',
+      'icon-sakai--sakai-membership': 'fe fe-users',
+      'icon-sakai--sakai-motd': 'fe fe-list',
+      'fa fa-print': 'fe fe-printer',
+      'fa fa-list-ul': 'fe fe-list',
+      'Mrphs-toolTitleNav__link--directurl': 'fe fe-link',
+      'Mrphs-toolTitleNav__link--help-popup': 'fe fe-help-circle'
+    }; // elements to check for and replace icons in
+
+    var elements = ['.Mrphs-toolsNav__menuitem--icon', '.Mrphs-breadcrumb--icon', '.toolMenuIcon'];
+    elements.forEach(function (element) {
+      var all = $(element);
+
+      if (all.length > 0) {
+        all.each(function () {
+          var _this = this;
+
+          Object.keys(icons).forEach(function (oldIcon) {
+            if ($(_this).hasClass(oldIcon)) {
+              $(_this).removeClass(oldIcon);
+              $(_this).addClass(icons[oldIcon]);
+            }
+          });
+        });
+      }
+    }); // share button
+
+    $('.Mrphs-breadcrumb--reset-icon').removeClass('fa fa-share').addClass('fe fe-arrow-left');
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FalconInterfaceInjector);
