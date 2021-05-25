@@ -31,6 +31,7 @@ const FalconStorage = {
     },
 
     set: (data) => {
+        console.log('setting...', data);
         return new Promise((resolve, reject) =>
             chrome.storage[FalconStorage.api].set(data, () =>
                 chrome.runtime.lastError
@@ -42,6 +43,9 @@ const FalconStorage = {
 
     // data = array returned from FalconStorage.get()
     existsInStorage: (data, index, matching) => {
+        if (!data) {
+            return false;
+        }
         return data.findIndex(item => item[index] === matching) !== -1;
     }
 }

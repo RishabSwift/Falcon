@@ -1,0 +1,47 @@
+{
+  "name": "Falcon",
+  "description": "Add various new functionalities and improvements to Western's OWL site",
+  "version": "1.0.3",
+  "manifest_version": 2,
+  "icons": {
+    "16": "./images/falcon-16x16.png",
+    "32": "./images/falcon-32x32.png",
+    "48": "./images/falcon-48x48.png",
+    "128": "./images/falcon-128x128.png"
+  },
+  "background": {
+    "scripts": [
+      "./background.js"
+    ],
+    "persistent": false
+  },
+  "options_page": "./options.html",
+  "browser_action": {
+    "default_popup": "./popup.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "https://owl.uwo.ca/*/*",
+    "https://rishab.me/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://owl.uwo.ca/*"
+      ],
+      "css": [
+        "./assets/falcon.css",
+        "./fonts/feather.css"
+      ],
+      "js": [
+        "./assets/falcon.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    "/assets/*",
+    "/fonts/*"
+  ]
+}

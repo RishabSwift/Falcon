@@ -1,13 +1,13 @@
 import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
-import FalconInterfaceEventListeners from "../ui/ui-event-listeners";
-
+import config from "devextreme/core/config";
+import Diagram from "devextreme/ui/diagram";
 
 class FalconEditor {
 
     STORAGE_KEY = 'falconEditor';
     uiEditor;
-    falconEditor = [];
+    falconEditor = []; // array of all diagrams from all courses
     currentCourse;
 
     constructor(currentCourse) {
@@ -65,7 +65,7 @@ class FalconEditor {
 
         let self = this;
 
-        this.uiEditor = new DevExpress.ui.dxDiagram(document.getElementById("falcon-editor-diagram"), {
+        this.uiEditor = new Diagram(document.getElementById("falcon-editor-diagram"), {
 
             "height": function () {
                 return window.innerHeight / 1.1;

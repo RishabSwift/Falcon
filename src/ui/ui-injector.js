@@ -1,21 +1,18 @@
-import FalconStorage from "../services/storage";
-
 const FalconInterfaceInjector = {
 
     darkModeButton: () => {
-        let $dark_mode_button = `<div class="Mrphs-sitesNav__menuitem"><a href="javascript:;" id="dark-mode-toggle" class="dark-mode-toggle"><i id="dark-mode-toggle-icon" class="fa fa-toggle-off mr-3"></i><span>Dark Mode</span></a></div>`;
-        $(".Mrphs-loginNav").prepend($dark_mode_button);
+        let $dark_mode_button = `<div class="Mrphs-sitesNav__menuitem"><a href="javascript:;" id="dark-mode-toggle" class="dark-mode-toggle"><i id="dark-mode-toggle-icon" class="fa fa-toggle-off mr-3"></i><span>Night OWL</span></a></div>`;
+        if ($('#dark-mode-toggle').length === 0) {
+            $(".Mrphs-loginNav").prepend($dark_mode_button);
+        }
     },
 
     falconEditorButton: () => {
         $('.Mrphs-toolsNav__menu ul').append(`<li><a href="javascript:;" class="Mrphs-toolsNav__menuitem--link" id="falcon-editor-button" title="Double Click to open. A powerful diagram editor included with Falcon"><span id="falcon-editor-icon" class="Mrphs-toolsNav__menuitem--icon fe fe-edit-2 "></span><span id="falcon-editor-title" class="Mrphs-toolsNav__menuitem--title">Falcon Editor</span></a></li>`)
     },
 
-    courseEditButton: () => {
-        $('<a class="mr-4 edit-course-name-button" href="javascript:;"> <i class="fe fe-edit"></i> Edit</a>').insertBefore('.toolMenus');
-    },
+    courseEditElements: () => {
 
-    courseEditModal: () => {
         let $courseNameEditModal = `<div class="modal fade" style="z-index: 10000" id="edit-course-title-modal" tabindex="-1" role="dialog" aria-labelledby="edit-course-title-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -40,22 +37,25 @@ const FalconInterfaceInjector = {
     </div>
 </div>`
         if (!$('#edit-course-title-modal').length) {
-            $('.Mrphs-pagebody').prepend($courseNameEditModal);
+            $('<a class="mr-4 edit-course-name-button" data-toggle="modal"  href="#edit-course-title-modal"> <i class="fe fe-edit-2"></i> Edit</a>').insertBefore('.toolMenus')
+            $('body').append($courseNameEditModal);
         }
-
     },
+
 
     falconResources: () => {
         if ($('.page-header h1').html() === 'Site Resources') {
             $(`<div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
             $('#showForm').hide();
-            $(`<h1 id="loading-resources">Loading resources...</h1>`).insertAfter('.page-header');
+            $(`<h1 id="loading-resources"><i class="fe fa-spin fe-loader"></i> Loading resources...</h1>`).insertAfter('.page-header');
         }
     },
 
 
     initAnimations: () => {
         $('.Mrphs-pagebody').addClass('animate__animated animate__fadeIn');
+        $('#selectSiteModal').addClass('animate__animated animate__fadeIn');
+        $('.Mrphs-userNav__subnav').addClass('animate__animated animate__fadeIn');
     },
 
     // replace all font-awesome icons with feather-icons
@@ -93,6 +93,8 @@ const FalconInterfaceInjector = {
             'fa fa-list-ul': 'fe fe-list',
             'Mrphs-toolTitleNav__link--directurl': 'fe fe-link',
             'Mrphs-toolTitleNav__link--help-popup': 'fe fe-help-circle',
+            'icon-sakai--sakai-resetpass': 'fe fe-key',
+            'icon-sakai--sakai-sitebrowser': 'fe fe-globe'
         }
 
         // elements to check for and replace icons in
@@ -119,8 +121,37 @@ const FalconInterfaceInjector = {
         })
 
         // share button
-            $('.Mrphs-breadcrumb--reset-icon').removeClass('fa fa-share').addClass('fe fe-arrow-left');
-    }
+        $('.Mrphs-breadcrumb--reset-icon').removeClass('fa fa-share').addClass('fe fe-arrow-left');
+    },
+
+    announcementPaginationButtonsFix() {
+        let order = [0, 1, 2];
+        // ANNOUNCEMENTS click on next, previous, or return to list button.
+        $('input[name="eventSubmit_doPrev_message"]').on('click', function () {
+            order = [0, 1, 2];
+            switchUp();
+        })
+
+        $('input[name="eventSubmit_doLinkcancel"]').on('click', function () {
+            order = [1, 0, 2];
+            switchUp();
+        })
+
+        $('input[name="eventSubmit_doNext_message"]').on('click', function () {
+            order = [2, 0, 1];
+            switchUp();
+        })
+
+        function switchUp() {
+            var wrapper = $('.itemNav'),
+                items = wrapper.children('input');
+            wrapper.append($.map(order, function (v) {
+                return items[v]
+            }));
+            wrapper.hide();
+        }
+    },
+
 
 }
 

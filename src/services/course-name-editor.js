@@ -1,20 +1,70 @@
 import FalconStorage from "./storage";
-class CourseNameEditor {
+import FalconInterfaceInjector from "../ui/ui-injector";
+
+class FalconCourseNameEditor {
 
     STORAGE_KEY = 'customCourseNames';
-    customCourseNames;
+    customCourseNames = [];
 
-    async constructor() {
-        // setup the UI elements
-        // set up the UI event listeners
-        let {customCourseNames} = await this.getCourseNames();
-        this.customCourseNames = customCourseNames;
+    constructor() {
+        FalconInterfaceInjector.courseEditElements();
+        this.addEventListeners();
+        this.getCourseNames()
+    }
+
+
+
+    addEventListeners() {
+
+        let self = this;
+
+        $('.edit-course-name-button').on('click', function () {
+            $('#custom-course-name-text').val('');
+            let link = $(this).siblings('div.fav-title').find('a');
+            $('#old-course-name').html(link.attr('title'));
+            self.autoPopulateCourseNameInModal()
+        })
+
+
+        // once they save their custom course name
+        $('#save-custom-course-title-button').on('click', function () {
+            let customName = $('#custom-course-name-text').val();
+            let oldCourseName = $('#old-course-name').html();
+
+            self.saveCourseName(oldCourseName, customName).then(() => {
+                $('#custom-course-name-text').val('');
+                $('#edit-course-title-modal').modal('hide');
+            });
+        })
+
+        $('#custom-course-name-text').on('keypress', function (e) {
+            if (e.which === 13) { // enter pressed
+                // Disable textbox to prevent multiple submit
+                $(this).attr("disabled", "disabled");
+                $('#save-custom-course-title-button').click();
+                $(this).removeAttr("disabled");
+            }
+        });
+
     }
 
     // auto populate course name that's being edited in the text box
-    autoPopulateCourseName() {
+    autoPopulateCourseNameInModal() {
+
+        let oldName = $('#old-course-name').html();
+
+        let exists = FalconStorage.existsInStorage(this.customCourseNames, 'oldName', oldName);
+        // exists already!
+        if (exists) {
+            let course = this.customCourseNames.filter(item => {
+                return item.oldName === oldName;
+            })[0];
+
+            $('#custom-course-name-text').val(oldName === course.newName ? '' : course.newName);
+        }
 
     }
+
 
     async saveCourseName(oldName, newName) {
 
@@ -43,16 +93,38 @@ class CourseNameEditor {
         }
 
         await FalconStorage.set({customCourseNames});
-        this.customCourseNames = customCourseNames; // TODO check .. do we even need this here b/c passed by reference?
-        // TODO await updateLinksWithCustomNames();\
+        this.replaceDomCourseNamesWithNewNames();
     }
 
-    async replaceDomCourseNamesWithNewNames() {
+    replaceDomCourseNamesWithNewNames() {
 
+        let self = this;
+        $('.link-container span').each(reflectCourseNameChanges);
+        $('.fullTitle').each(reflectCourseNameChanges);
+
+        function reflectCourseNameChanges() {
+            let oldName = $(this).parent().attr('title');
+
+            let exists = FalconStorage.existsInStorage(self.customCourseNames, 'oldName', oldName);
+            if (exists) {
+                let course = self.customCourseNames.filter(item => {
+                    return item.oldName === oldName;
+                })[0];
+                $(this).html(course.newName);
+            }
+        }
     }
 
-    async getCourseNames() {
-        return await FalconStorage.sync().get(this.STORAGE_KEY);
+    getCourseNames() {
+        FalconStorage.sync().get(this.STORAGE_KEY).then((data) => {
+            let {customCourseNames} = data;
+            if (customCourseNames && customCourseNames !== 'undefined') {
+                this.customCourseNames = customCourseNames;
+                this.replaceDomCourseNamesWithNewNames()
+            }
+        });
     }
 
 }
+
+export default FalconCourseNameEditor;

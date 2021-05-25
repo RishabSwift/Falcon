@@ -1,5 +1,6 @@
 import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
+import FileManager from "devextreme/ui/file_manager";
 
 class FalconFileManager {
 
@@ -8,25 +9,26 @@ class FalconFileManager {
     STORAGE_KEY = 'falconResources';
 
     forceRecache = false;
-    falconResources = [];
-    currentCourse; // current course ID in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
+    falconResources = []; // all resources from all courses
 
 
     constructor(courseId, courseName) {
-        this.currentCourse = courseName;
-        this.courseId = courseId;
+        this.currentCourse = courseName; // The original Course Name
+        this.courseId = courseId; // current course ID in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
         FalconInterfaceInjector.falconResources();
         this.addEventListeners();
     }
 
     addEventListeners() {
         let showOriginal = false;
+        let self = this;
 
         $('#toggle-original-resource').on('click', function () {
             if (showOriginal) {
                 $('#showForm').slideUp();
                 showOriginal = false;
                 $(this).html('Show Original Resources');
+
             } else {
                 $('#showForm').slideDown();
                 showOriginal = true;
@@ -34,16 +36,22 @@ class FalconFileManager {
             }
         })
 
+        this.setupResources().then(() => {
+            $('#loading-resources').remove();
+        });
 
-        $('#refresh-resources-button').on('click', function () {
-            $(this).hide();
-            $('#last-fetched-time').html('Re-fetching...');
-            // startFileManager(true).then(() => {
-            //     $(this).show();
-            // })
-        })
+        // $('#refresh-resources-button').on('click', function () {
+        //     $(this).hide();
+        //     $('#last-fetched-time').html('Re-fetching...');
+        //     // startFileManager(true).then(() => {
+        //     //     $(this).show();
+        //     // })
+        // })
 
-        this.setupResources();
+    }
+
+    test() {
+
     }
 
     forceRefresh() {
@@ -54,8 +62,9 @@ class FalconFileManager {
     async setupResources() {
 
         let result = await this.getResourcesForCourse();
+        console.log(result);
 
-        $("#file-manager").dxFileManager({
+        new FileManager(document.getElementById('file-manager'), {
             name: "fileManager",
             fileSystemProvider: result,
             rootFolderName: "Falcon",
@@ -93,22 +102,28 @@ class FalconFileManager {
 
 
             },
+
             itemView: {
                 details: {
                     columns: [
                         "thumbnail",
                         "name",
-                        "size",
+                        {
+                            dataField: "size",
+                            caption: "Size",
+                            width: 'auto',
+                        },
                         {
                             dataField: "modified_at",
                             caption: "Last Modified",
                             width: 'auto',
                             dataType: 'date',
+
                         },
                         {
                             dataField: "created_by",
                             caption: "Created By",
-                            width: 'auto'
+                            width: 'auto',
                         },
 
 
@@ -146,7 +161,7 @@ class FalconFileManager {
     // Get resources
     async getResourcesForCourse() {
 
-        let {falconResources} = await this.getResources();
+        let falconResources = await this.getResources();
 
         let data;
 
@@ -154,15 +169,13 @@ class FalconFileManager {
         if (!falconResources || this.forceRecache) {
             this.forceRecache = false;
             data = await this.fetchResourcesForCourse();
-            return await this.saveResources(data); // returning it as a promise so that we can do .then
-            // return this.falconResources; // falconResources is already saved, so we're returning it to keep it
+            return data;
         }
 
         let exists = FalconStorage.existsInStorage(falconResources, 'courseId', this.courseId);
 
         if (!exists) {
             data = await this.fetchResourcesForCourse();
-            await this.saveResources(data);
             return data;
         }
 
@@ -174,7 +187,6 @@ class FalconFileManager {
         // make sure it's not older than TTL... otherwise re-fetch
         if (this.isExpired(falconResource)) {
             data = await this.fetchResourcesForCourse();
-            await this.saveResources(data);
             return data;
         }
 
@@ -183,8 +195,14 @@ class FalconFileManager {
     }
 
     async getResources() {
+        // first check the local storage...
         let {falconResources} = await FalconStorage.local().get(this.STORAGE_KEY)
-        this.falconResources = falconResources;
+
+        // if it doesn't exist at all... then we haven't set anything in the local storage
+        if (!falconResources) {
+            return false;
+        }
+
         return falconResources;
     }
 
@@ -192,9 +210,6 @@ class FalconFileManager {
 
         // let {falconResources} = await this.getResources();
         //
-        // if (!falconResources) {
-        //     falconResources = [];
-        // }
 
         let currentTimeInMillis = (new Date()).getTime();
         let exists = FalconStorage.existsInStorage(this.falconResources, 'courseId', this.courseId);
@@ -220,7 +235,7 @@ class FalconFileManager {
         }
 
         // and save it in storage
-         return FalconStorage.set({falconResources: this.falconResources});
+        return FalconStorage.local().set({falconResources: this.falconResources});
     }
 
     isExpired(falconResource) {
@@ -236,7 +251,9 @@ class FalconFileManager {
             });
 
         if (file) {
-            return file.content_collection;
+            let data = this.parseRawFileDataIntoTree(file.content_collection);
+            await this.saveResources(data);
+            return data;
         }
     }
 
@@ -260,7 +277,7 @@ class FalconFileManager {
                 rawFilePath = decodeURIComponent(file.url).split('/');
             }
             rawFilePath = rawFilePath.splice(6);
-            rawFilePath[0] = this.courseId;
+            rawFilePath[0] = this.currentCourse;
             rawFilePath = rawFilePath.join('/');
 
             let dateString = file.modifiedDate.substr(0, 8);
@@ -280,7 +297,7 @@ class FalconFileManager {
                 if (!r[name]) {
                     r[name] = {result: []};
                     if (file.type === 'collection') {
-                        r.result.push({name, isDirectory: true, modified_at: date, created_by: file.author, items: r[name].result})
+                        r.result.push({name, isDirectory: true, modified_at: date, size: file.size, created_by: file.author, items: r[name].result})
                     } else {
                         r.result.push({name, url: file.url, mimeType: file.type, modified_at: date, created_by: file.author, size: file.size, items: r[name].result})
 
@@ -293,5 +310,63 @@ class FalconFileManager {
         return result;
     }
 
+    // https://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
+    timeAgo(time) {
+
+        switch (typeof time) {
+            case 'number':
+                break;
+            case 'string':
+                time = +new Date(time);
+                break;
+            case 'object':
+                if (time.constructor === Date) time = time.getTime();
+                break;
+            default:
+                time = +new Date();
+        }
+        var time_formats = [
+            [60, 'seconds', 1], // 60
+            [120, '1 minute ago', '1 minute from now'], // 60*2
+            [3600, 'minutes', 60], // 60*60, 60
+            [7200, '1 hour ago', '1 hour from now'], // 60*60*2
+            [86400, 'hours', 3600], // 60*60*24, 60*60
+            [172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
+            [604800, 'days', 86400], // 60*60*24*7, 60*60*24
+            [1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
+            [2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
+            [4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
+            [29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
+            [58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
+            [2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
+            [5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
+            [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+        ];
+        var seconds = (+new Date() - time) / 1000,
+            token = 'ago',
+            list_choice = 1;
+
+
+        if (seconds === 0 || seconds < 0.05) {
+            return 'just now'
+        }
+        if (seconds < 0) {
+            seconds = Math.abs(seconds);
+            token = 'from now';
+            list_choice = 2;
+        }
+        var i = 0,
+            format;
+        while (format = time_formats[i++])
+            if (seconds < format[0]) {
+                if (typeof format[2] == 'string')
+                    return format[list_choice];
+                else
+                    return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
+            }
+        return time;
+    }
+
 }
+
 export default FalconFileManager;

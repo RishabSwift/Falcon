@@ -3,6 +3,7 @@ const AssetInjector = {
     getFalconAsset: false,
     injectToIframes: false,
     onlyOnce: false,
+    appendToEndOfBody: false,
 
     falconAssets: function () {
         this.getFalconAsset = true;
@@ -16,8 +17,7 @@ const AssetInjector = {
 
     getUrl: function (url) {
         if (this.getFalconAsset) {
-            this.getFalconAsset = false; // reset
-            return chrome.runtime.getUrl(url);
+            return chrome.runtime.getURL(url);
         }
         return url;
     },
@@ -25,6 +25,7 @@ const AssetInjector = {
     // inject asset only once... MUST HAVE className to keep track of insertion
     once: function () {
         this.onlyOnce = true;
+        return this;
     },
 
     alsoToIframes: function () {
@@ -39,14 +40,33 @@ const AssetInjector = {
             script.className = className;
         }
         script.onload = function () {
-            this.remove();
+            // this.remove();
         };
-        (document.head || document.documentElement).appendChild(script);
+
+        // let parentElement = this.appendToEndOfBody ? document.body : (document.head || document.documentElement);
+
+        if (this.onlyOnce) {
+            if ($(`.${className}`).length === 0) {
+                (document.head || document.documentElement).appendChild(script);
+            }
+        } else {
+            (document.head || document.documentElement).appendChild(script);
+        }
 
         return this;
     },
 
+    endOfBody() {
+        this.appendToEndOfBody = true;
+        return this;
+    },
+    endOfHead() {
+        this.appendToEndOfBody = false;
+        return this;
+    },
+
     injectStyle: function (url, className = null) {
+
         let link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
         link.href = this.getUrl(url);
@@ -64,15 +84,13 @@ const AssetInjector = {
 
 
         if (this.injectToIframes) {
-            $('iframe').load(function () {
-                $('.portletMainIframe').contents().find('body').append(link);
-            })
+            $('.portletMainIframe').contents().find('body').append(link);
         }
 
         return this;
     },
 
-    removeInjectionByUrl: function(url) {
+    removeInjectionByUrl: function (url) {
         // find out if the URL is css or js
         let mimeType = url.split('.').pop();
 
@@ -83,7 +101,7 @@ const AssetInjector = {
         }
     },
 
-    removeInjectionByClassName: function(className) {
+    removeInjectionByClassName: function (className) {
         $(`.${className}`).remove();
 
         if (this.injectToIframes) {
@@ -92,14 +110,21 @@ const AssetInjector = {
         return this;
     },
 
-    injectRawHtml: function (html) {
-        $(html).appendTo(document.head);
+    injectRawHtml: function (html, className = null) {
+        if (this.onlyOnce) {
+            if ($(`.${className}`).length === 0) {
+                $(html).appendTo(document.head);
+                return this;
+            }
+        } else {
+            $(html).appendTo(document.head);
+            return this;
+        }
+
         return this;
     }
+
 
 }
 
 export default AssetInjector;
-
-
-
