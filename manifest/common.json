@@ -31,8 +31,7 @@
         "https://owl.uwo.ca/*"
       ],
       "css": [
-        "./assets/falcon.css",
-        "./fonts/feather.css"
+        "./assets/falcon.css"
       ],
       "js": [
         "./assets/falcon.js"

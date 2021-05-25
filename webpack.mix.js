@@ -1,6 +1,7 @@
 let mix = require('laravel-mix');
 let del = require('del');
 
+
 let MergeJsonWebpackPlugin = require("merge-jsons-webpack-plugin");
 
 mix.js(['src/main.js'], 'dist/falcon.js');
@@ -19,10 +20,10 @@ mix.copy('src/background.js', 'dist/chrome/background.js')
     .copy('src/services/redirect-handler.js', 'dist/chrome/assets/redirect-handler.js')
     .copyDirectory('images/icons', 'dist/chrome/images')
     .copyDirectory('src/assets/fonts', 'dist/chrome/fonts')
-    .then(() => {
-        del('dist/falcon.css');
-        del('dist/falcon.js');
-});
+    // .then(() => {
+        // del('dist/falcon.css');
+        // del('dist/falcon.js');
+// });
 
 // join manifest files and copy to dist/chrome
 // copy background.js to dist/chrome/background.js

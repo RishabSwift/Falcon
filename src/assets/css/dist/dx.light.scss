@@ -255,7 +255,7 @@
 }
 @font-face {
   font-family: DXIcons;
-  src: local("DevExtreme Generic Icons"),local("devextreme_generic_icons"),url(chrome-extension://__MSG_@@extension_id__/fonts/dxicons.woff2) format("woff2"),url(chrome-extension://__MSG_@@extension_id__/fonts/dxicons.woff) format("woff"),url(chrome-extension://__MSG_@@extension_id__/fonts/dxicons.ttf) format("truetype");
+  src: local("DevExtreme Generic Icons"),local("devextreme_generic_icons"),url('#{$urlPath}/fonts/dxicons.woff2') format("woff2"),url('#{$urlPath}/fonts/dxicons.woff') format("woff"),url('#{$urlPath}/fonts/dxicons.ttf') format("truetype");
   font-weight: 400;
   font-style: normal;
 }

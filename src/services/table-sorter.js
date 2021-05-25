@@ -1,7 +1,7 @@
 import $ from "jquery";
 window.$ = window.jQuery = $;
-import '/assets/js/dist/jquery.tablesorter.min.js';
-import '/assets/js/dist/jquery.tablesorter.widgets.min.js';
+import '../assets/js/dist/jquery.tablesorter.min';
+import '../assets/js/dist/jquery.tablesorter.widgets.min.js';
 
 class TableSorter {
 

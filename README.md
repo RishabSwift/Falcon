@@ -68,9 +68,7 @@ Of course, the features listed here are the main features you can visually inter
 # Installation
 Falcon is available on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a> for easy install.
 
-You can also install it manually as well.
-
-Before you can install it manually, ensure you have <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">node.js and NPM</a> installed.
+Before you can install it manually, ensure you have <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">node.js and NPM</a> installed. Once you've got it, you're ready to begin!
 
 1. Clone or download this project as a Zip file, and extract it
 2. In the base directory, run `npm run dev`. You should see a new folder called `dist` with a folder called `chrome` inside it

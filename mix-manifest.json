@@ -11,8 +11,6 @@
     "/dist/chrome/assets/falcon-dark.css": "/dist/chrome/assets/falcon-dark.css",
     "/dist/chrome/assets/popup-app.css": "/dist/chrome/assets/popup-app.css",
     "/dist/chrome/assets/jquery-2.2.4.min.js": "/dist/chrome/assets/jquery-2.2.4.min.js",
-    "/dist/chrome/assets/dx-diagram.min.js": "/dist/chrome/assets/dx-diagram.min.js",
-    "/dist/chrome/assets/dx.all.js": "/dist/chrome/assets/dx.all.js",
     "/dist/chrome/assets/redirect-handler.js": "/dist/chrome/assets/redirect-handler.js",
     "/dist/chrome/images/falcon-128x128.png": "/dist/chrome/images/falcon-128x128.png",
     "/dist/chrome/images/falcon-16x16.png": "/dist/chrome/images/falcon-16x16.png",
@@ -37,5 +35,5 @@
     "/dist/chrome/fonts/dxiconsmaterial.ttf": "/dist/chrome/fonts/dxiconsmaterial.ttf",
     "/dist/chrome/fonts/dxiconsmaterial.woff": "/dist/chrome/fonts/dxiconsmaterial.woff",
     "/dist/chrome/fonts/dxiconsmaterial.woff2": "/dist/chrome/fonts/dxiconsmaterial.woff2",
-    "/dist/chrome/fonts/feather.css": "/dist/chrome/fonts/feather.css"
+    "/dist/chrome/fonts/feather.scss": "/dist/chrome/fonts/feather.scss"
 }

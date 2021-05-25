@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Feather';
   src:
-    url('chrome-extension://__MSG_@@extension_id__/fonts/Feather.ttf?sdxovp') format('truetype'),
-    url('chrome-extension://__MSG_@@extension_id__/fonts/Feather.woff?sdxovp') format('woff'),
-    url('chrome-extension://__MSG_@@extension_id__/fonts/Feather.svg?sdxovp#Feather') format('svg');
+    url('#{$urlPath}/fonts/Feather.ttf?sdxovp') format('truetype'),
+    url('#{$urlPath}/fonts/Feather.woff?sdxovp') format('woff'),
+    url('#{$urlPath}/fonts/Feather.svg?sdxovp#Feather') format('svg');
   font-weight: normal;
   font-style: normal;
 }

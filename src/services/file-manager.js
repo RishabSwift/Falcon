@@ -26,7 +26,7 @@ class FalconFileManager {
         $('#toggle-original-resource').on('click', function () {
             if (showOriginal) {
                 $('#showForm').slideUp();
-                showOriginal = false;
+                showOriginal = false;x
                 $(this).html('Show Original Resources');
 
             } else {
@@ -42,7 +42,8 @@ class FalconFileManager {
 
         // $('#refresh-resources-button').on('click', function () {
         //     $(this).hide();
-        //     $('#last-fetched-time').html('Re-fetching...');
+        //     $('#last-fetched-time').html('Re-
+
         //     // startFileManager(true).then(() => {
         //     //     $(this).show();
         //     // })
@@ -62,7 +63,9 @@ class FalconFileManager {
     async setupResources() {
 
         let result = await this.getResourcesForCourse();
-        console.log(result);
+
+        // make sure we have the element
+
 
         new FileManager(document.getElementById('file-manager'), {
             name: "fileManager",
