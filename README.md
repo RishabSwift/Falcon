@@ -107,4 +107,4 @@ If you have any questions, ideas, or concerns, please send them over to swift@he
 
 # License
 
-See [LICENSE](/license.md) for more information.
+See [LICENSE](/LICENSE.md) for more information.
