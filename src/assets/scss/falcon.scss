@@ -1,0 +1,22 @@
+/**
+ * This is the main file which contains ALL assets for Falcon
+ * This is for both LIGHT and DARK mode
+ */
+
+$urlPath: "chrome-extension://__MSG_@@extension_id__";
+
+@supports (-moz-appearance:none) {
+ $urlPath: "";
+}
+
+@import "../css/dist/animate.min.css";
+@import "../css/dist/dx-diagram.css";
+@import "../css/dist/dx.light";
+@import "../css/dist/tablesorter-bs4.min.css";
+@import "../css/owl/lesson-builder.css";
+@import "../css/owl/lesson-builder-checklist.css";
+@import "helper";
+@import "vars-light";
+@import "fonts";
+@import "shared";
+@import "../fonts/feather";

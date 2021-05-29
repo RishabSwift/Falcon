@@ -1,0 +1,16 @@
+// This file contains all the variables for Falcon's DARK (NightOWL) theme
+
+$primary:   #e3a1ff;
+$nav-bg-color: #6400ff;
+//$nav-bg-color: #944eff;
+$primary-darker: #e3a1ff;
+$text-color: #12263f;
+$white: #191a1b;
+$tab-hover-color: #343435;
+$sidebar-menu-active-bg-color: #2d2d2d;
+$sidebar-menu-active-text-color: #c9c8c5;
+$link-hover-color: darken($primary, 10%);
+
+@import "../shared";
+@import "falcon-dark-generated";
+@import "custom";
