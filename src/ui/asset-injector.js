@@ -84,8 +84,35 @@ const AssetInjector = {
 
 
         if (this.injectToIframes) {
-            $('.portletMainIframe').contents().find('body').append(link);
+            // $('.portletMainIframe').contents().find('body').append(link);
+            //
+            //     if ($('.portletMainIframe').length > 0) {
+            //         $('iframe').on('load', function() {
+            //             $('.portletMainIframe').contents().find('body').append(link);
+            //         })
+            //     }
+
+
+             $('iframe').contents().find('body').append(link);
+
+            if ( $('iframe').length > 0) {
+                $('iframe').on('load', function() {
+                     $('iframe').contents().find('body').append(link);
+                })
+            }
+
+
+            // ensure that it has been injected...
+            // this fixes the bug that doesn't enable dark mode after page switching from pjax
+            // setTimeout(function () {
+            //     if ($('.portletMainIframe').length > 0) {
+            //         if ($('.portletMainIframe').contents().find('.falcon-dark-mode').length === 0) {
+            //             $('.portletMainIframe').contents().find('body').append(link);
+            //         }
+            //     }
+            // }, 500)
         }
+
 
         return this;
     },

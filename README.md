@@ -37,7 +37,7 @@ The new resources page is extremely fast and offers an instant file-browsing exp
 
 Especially useful when you're just starting a new semester, and you're not used to the course codes yet.
 
-<img src="/images/banners/Custom course names.png"/>
+<img src="/images/banners/custom course names.png"/>
 
 -----
 
@@ -53,7 +53,7 @@ Falcon includes a new editor which you can use to create flow charts, diagrams, 
 
 OWL offers sorting of announcements, assignments, etc. but it takes a *full* page refresh just to sort, making it an awful experience. Falcon sorts *instantly*. Falcon also allows you to search tables, too.
 
-<img src="/images/banners/sort-and-search-tables.png?cachebust"/>
+<img src="/images/banners/sort-and-search-tables.png"/>
 
 
 ----
@@ -68,12 +68,9 @@ Of course, the features listed here are the main features you can visually inter
 # Installation
 Falcon is available on the <a href="https://chrome.google.com/webstore/detail/falcon/cgmgdjmahmpdflojkflmlockjeagenmf">Chrome Web Store</a> for easy install.
 
-Before you can install it manually, ensure you have <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">node.js and NPM</a> installed. Once you've got it, you're ready to begin!
-
-1. Clone or download this project as a Zip file, and extract it
-2. In the base directory, run `npm run dev`. You should see a new folder called `dist` with a folder called `chrome` inside it
+1. Go to the <a href="https://github.com/RishabSwift/Falcon/releases">releases page</a> and download the latest version, and extract it
 2. Go to `chrome://extensions` and toggle on `Developer Mode` on the top right
-3. On the same page, you should now see three new buttons. Click on the `Load unpacked` button and select the `dist/chrome` directory
+3. On the same page, you should now see three new buttons. Click on the `Load unpacked` button and select `dist/chrome` from the extracted directory
 4. That's it! Falcon is now running!
 
 If there are any updates, then you will need to reinstall it manually. However, once it's available on the Chrome store, updating Falcon is just like updating any other Chrome extensions.
@@ -96,8 +93,9 @@ Feel free to fork Falcon and create a pull request!
 Contribution can be anything from fixing spelling mistakes to implementing new features.
 
 Some tips to help you get started:
-- While developing, you will need to build it and load it in chrome manually. See the Installation instructions above for building Falcon from source files.
-- It may be cumbersome to type in `npm run dev` every time you make any changes. You can use the `npm run watch` command to automatically compile the source code upon any change to the source code.
+- Ensure you have <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">node.js and NPM</a> installed.
+- While developing, you will need to build it and load it in chrome manually. i.e. run `npm run dev` from the base directory. It will create a new `dist` directory with folders for `chrome` and `firefox`.
+- It may be cumbersome to type in `npm run dev` every time you make any changes. You can use the `npm run watch` command to automatically compile the source code upon any change.
 - Use Falcon's API for fluid development
     - `AssetInjector` for injecting resources to any page (including `iframes`)
     - `FalconStorage` for saving / querying user's data
@@ -109,4 +107,4 @@ If you have any questions, ideas, or concerns, please send them over to swift@he
 
 # License
 
-See <a href="license.md">LICENSE</a> for more information.
+See [LICENSE](/license.md) for more information.

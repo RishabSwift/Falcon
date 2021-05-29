@@ -51,10 +51,6 @@ class FalconFileManager {
 
     }
 
-    test() {
-
-    }
-
     forceRefresh() {
         this.forceRecache = true;
         return this;
@@ -65,7 +61,9 @@ class FalconFileManager {
         let result = await this.getResourcesForCourse();
 
         // make sure we have the element
-
+        if ($('#file-manager').length === 0) {
+            return;
+        }
 
         new FileManager(document.getElementById('file-manager'), {
             name: "fileManager",
@@ -82,7 +80,6 @@ class FalconFileManager {
             onSelectedFileOpened: function (e) {
                 if (isImage(e.file.dataItem.mimeType)) {
                     var popup = $("#photo-popup").dxPopup("instance");
-                    console.log(e);
                     popup.option({
                         "title": e.file.name,
                         "contentTemplate": `<img src="${e.file.dataItem.url}" class="photo-popup-image"/>`,

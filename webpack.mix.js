@@ -25,6 +25,9 @@ mix.copy('src/background.js', 'dist/chrome/background.js')
         // del('dist/falcon.js');
 // });
 
+// now copy the chrome folder to firefox
+// mix.copyDirectory('dist/chrome', 'dist/firefox');
+
 // join manifest files and copy to dist/chrome
 // copy background.js to dist/chrome/background.js
 // copy fonts to dist/chrome/fonts
@@ -39,7 +42,16 @@ mix.webpackConfig({
             "output": {
                 "fileName": 'dist/chrome/manifest.json'
             }
-        })
+        }),
+        // new MergeJsonWebpackPlugin({
+        //     "files": [
+        //         './manifest/common.json',
+        //         './manifest/firefox.json',
+        //     ],
+        //     "output": {
+        //         "fileName": 'dist/firefox/manifest.json'
+        //     }
+        // })
     ]
 })
 

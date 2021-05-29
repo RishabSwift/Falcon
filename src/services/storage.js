@@ -31,7 +31,6 @@ const FalconStorage = {
     },
 
     set: (data) => {
-        console.log('setting...', data);
         return new Promise((resolve, reject) =>
             chrome.storage[FalconStorage.api].set(data, () =>
                 chrome.runtime.lastError

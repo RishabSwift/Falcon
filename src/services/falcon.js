@@ -24,7 +24,7 @@ const Falcon = {
         Falcon.onSuccess(false);
 
         pjax = new Pjax({
-            elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form)",
+            elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form):not(#selectIndexForm)",
             cacheBust: false,
             debug: false,
             selectors: [
@@ -74,6 +74,8 @@ const Falcon = {
 
         FalconInterfaceInjector.replaceIcons();
         FalconInterfaceInjector.announcementPaginationButtonsFix();
+        FalconInterfaceInjector.hideFavouritesBar();
+
         Falcon.saveCourseId();
         new TableSorter();
         new FalconDarkMode();

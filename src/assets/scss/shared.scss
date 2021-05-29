@@ -115,9 +115,13 @@ input, button {
 }
 
 #toolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title, #subSites ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title {
-  color:  $sidebar-menu-active-text-color;
+  color: $sidebar-menu-active-text-color;
 }
 
+.modal-backdrop.fade.in, .modal-backdrop.fade {
+  background-color: #000 !important;
+  z-index: 11000 !important;
+}
 
 #toolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--icon, #subSites ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--icon {
   color: #0078ff !important;
@@ -127,6 +131,14 @@ input, button {
 .Mrphs-multipleTools .Mrphs-container.Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
+
+  h2 {
+    margin-left: 10px !important;
+  }
+}
+
+.Mrphs-toolTitleNav.Mrphs-container--toolTitleNav {
+  margin-left: 10px !important;
 }
 
 .Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav,
@@ -165,11 +177,35 @@ input, button {
   color: $primary !important;
 }
 
+// minimized sidebar
+@media only screen and (min-width: 801px) {
+  body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #toolMenuWrap {
+    min-width: 55px !important;
+  }
+
+  body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #toolMenu ul li .Mrphs-toolsNav__menuitem--link:hover .Mrphs-toolsNav__menuitem--title, body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #toolMenu ul li .Mrphs-toolsNav__menuitem--link:focus .Mrphs-toolsNav__menuitem--title, body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #subSites:not(.floating) ul li .Mrphs-toolsNav__menuitem--link:hover .Mrphs-toolsNav__menuitem--title, body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #subSites:not(.floating) ul li .Mrphs-toolsNav__menuitem--link:focus .Mrphs-toolsNav__menuitem--title {
+    border-radius: 7px !important;
+    margin-left: 0 !important;
+    border: none !important;
+  }
+  body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link:hover .Mrphs-toolsNav__menuitem--title, body.Mrphs-toolMenu-collapsed:not(.tool-maximised) #subSites:not(.floating) ul li.is-current .Mrphs-toolsNav__menuitem--link:hover .Mrphs-toolsNav__menuitem--title {
+    background: inherit !important;
+  }
+}
+
+#linkNav ul li.Mrphs-sitesNav__menuitem .link-container {
+  border-radius: 7px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
 #toolMenu ul li .Mrphs-toolsNav__menuitem--link:hover, #toolMenu ul li .Mrphs-toolsNav__menuitem--link:focus, #subSites ul li .Mrphs-toolsNav__menuitem--link:hover, #subSites ul li .Mrphs-toolsNav__menuitem--link:focus {
   border-radius: 7px !important;
 }
 
-
+.Mrphs-sitesNav__dropdown, .Mrphs-sitesNav__favbtn {
+  display: none !important;
+}
 
 #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem .Mrphs-sitesNav__submenuitem-link:focus, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:hover, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:active, #linkNav ul li.Mrphs-sitesNav__menuitem .Mrphs-sitesNav__submenu .Mrphs-sitesNav__submenuitem a:focus {
   color: #6b0eff !important;
@@ -180,7 +216,9 @@ a.btn-primary,
 button.btn-primary, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected, .act .active,
 #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .link-container, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__dropdown, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__favbtn {
   background: $nav-bg-color !important;
-  border-color: #5502db !important;
+  //border-color: #5502db !important;
+  border: none !important;
+  border-radius: 7px !important;
   color: white !important;
 }
 
@@ -189,6 +227,10 @@ button.btn-primary:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_pa
 #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .link-container:hover, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__dropdown:hover, #linkNav ul li.Mrphs-sitesNav__menuitem.is-selected .Mrphs-sitesNav__favbtn:hover {
   background: #8025ff !important;
   color: white !important;
+}
+
+#linkNav ul li.Mrphs-sitesNav__menuitem.is-selected {
+  background: none !important;
 }
 
 #toolMenu ul li.is-current .Mrphs-toolsNav__menuitem--link:before, #subSites ul li.is-current .Mrphs-toolsNav__menuitem--link:before,
@@ -313,7 +355,7 @@ ul.favoriteSiteList > li, #selectQuickLink > li {
 button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="disabled"], .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="disabled"], button.btn-primary[disabled="disabled"]:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="disabled"]:hover, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="disabled"]:hover, button.btn-primary[disabled="disabled"]:active, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="disabled"]:active, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="disabled"]:active, button.btn-primary[disabled="disabled"]:focus, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="disabled"]:focus, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="disabled"]:focus, button.btn-primary[disabled], .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled], .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled], button.btn-primary[disabled]:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled]:hover, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled]:hover, button.btn-primary[disabled]:active, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled]:active, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled]:active, button.btn-primary[disabled]:focus, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled]:focus, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled]:focus, button.btn-primary[disabled="true"], .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="true"], .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="true"], button.btn-primary[disabled="true"]:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="true"]:hover, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="true"]:hover, button.btn-primary[disabled="true"]:active, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="true"]:active, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="true"]:active, button.btn-primary[disabled="true"]:focus, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[disabled="true"]:focus, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[disabled="true"]:focus, button.btn-primary[class="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[class="disabled"], .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[class="disabled"], button.btn-primary[class="disabled"]:hover, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[class="disabled"]:hover, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[class="disabled"]:hover, button.btn-primary[class="disabled"]:active, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[class="disabled"]:active, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[class="disabled"]:active, button.btn-primary[class="disabled"]:focus, .Mrphs-sakai-samigo .dataTables_wrapper .dataTables_paginate span .btn-primary.paginate_button[class="disabled"]:focus, .Mrphs-sakai-samigo .btn-primary#authorIndexForm\:remove-selected[class="disabled"]:focus, .act .active[disabled="disabled"], .act .active[disabled="disabled"]:hover, .act .active[disabled="disabled"]:active, .act .active[disabled="disabled"]:focus, .act .active[disabled], .act .active[disabled]:hover, .act .active[disabled]:active, .act .active[disabled]:focus, .act .active[disabled="true"], .act .active[disabled="true"]:hover, .act .active[disabled="true"]:active, .act .active[disabled="true"]:focus, .act .active[class="disabled"], .act .active[class="disabled"]:hover, .act .active[class="disabled"]:active, .act .active[class="disabled"]:focus {
   background: #f2f2f2 !important;
   color: #4c4b4b !important;
-  border:  solid 1px #edf2f9 !important;
+  border: solid 1px #edf2f9 !important;
 }
 
 
@@ -326,10 +368,11 @@ button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper
   background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 1) 2%, rgba(5, 49, 255, 1) 100.7%) !important;
 }
 
-.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active  {
+.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active {
   background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(5, 49, 255, 1) 2%, rgba(147, 15, 255, 1) 100.7%) !important;
 }
-.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active  + .progress-bar.progress-bar-active.progress-bar-active  {
+
+.progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active + .progress-bar.progress-bar-active.progress-bar-active {
   background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 1) 2%, rgba(5, 49, 255, 1) 100.7%) !important;
 }
 
@@ -369,8 +412,6 @@ button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
 }
-
-
 
 
 /*ghost white*/
@@ -429,9 +470,10 @@ button.btn-primary[disabled="disabled"], .Mrphs-sakai-samigo .dataTables_wrapper
   padding-left: 10px !important;
 }
 
-.Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav{
+.Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav {
   padding-left: 10px !important;
 }
+
 .Mrphs-toolTitleNav {
   padding-left: 10px !important;
 }

@@ -2090,3 +2090,72 @@ form#revise[action$=dfReviseForumSettingsAttach] #forum_grading {
         padding: 3px 0 3px 6px;
     }
 }
+
+
+
+/* SECTION 3 - TABULAR DATA LAYOUTS*/
+/*itemSummary: table for displaying the details of an item - layout is th-td, th-td*/
+/*see an announcement*/
+.itemSummary, .itemSummaryLite{
+    margin: .5em 0;
+}
+
+/*format the th - since jsf cannot do <th> vertically in a column,
+ certain tds are classed (header) in jsf based tools to render the same as the th*/
+.itemSummary th, .itemSummary td.header, .itemSummaryHeader, .itemSummaryLite td.header{
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap;
+    vertical-align: top;
+    text-align: left;
+    padding: .3em 1em .3em .3em;
+}
+
+.itemSummaryHeader, .itemSummaryValue {
+    padding: .3em 1em .3em .3em;
+}
+
+table.itemSummary td, td.itemSummaryLite{
+    text-align: left;
+    padding: .3em 1em;
+    vertical-align: top;
+}
+
+table.itemSummary caption, caption.itemSummaryLite {
+    text-align: left;
+    font-weight: bold;
+    padding: 1em 0 0 0;
+}
+
+
+/*for panels that "look" like forms but are read only ie. assignment preview - student view*/
+/*see: preview an assignment - view the student view*/
+.inopPanel {
+    border: 1px solid #eee;
+    padding: 1em;
+}
+
+/*to highlight info or controls in some high threshhold situations*/
+/*do an assignment that requires honor code check as a student*/
+.highlightPanel {
+    margin: 1em 0;
+    padding: .5em;
+}
+
+
+/*list used everywhere to list attachments to an item*/
+/*see an announcement with attachments*/
+ul.attachList{
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul.attachList img{
+    vertical-align: middle;
+    margin: 0 1em 0 0;
+}
+
+ul.attachList li{
+    list-style: none;
+    margin: 0 0 .3em 0;
+}

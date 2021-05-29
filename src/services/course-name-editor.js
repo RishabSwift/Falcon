@@ -1,5 +1,6 @@
 import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
+import {custom} from "devextreme/ui/dialog";
 
 class FalconCourseNameEditor {
 
@@ -92,7 +93,7 @@ class FalconCourseNameEditor {
             customCourseNames.push({oldName: oldName, newName: newName})
         }
 
-        await FalconStorage.set({customCourseNames});
+        await FalconStorage.sync().set({customCourseNames});
         this.replaceDomCourseNamesWithNewNames();
     }
 
@@ -115,7 +116,7 @@ class FalconCourseNameEditor {
         }
     }
 
-    getCourseNames() {
+    async getCourseNames() {
         FalconStorage.sync().get(this.STORAGE_KEY).then((data) => {
             let {customCourseNames} = data;
             if (customCourseNames && customCourseNames !== 'undefined') {

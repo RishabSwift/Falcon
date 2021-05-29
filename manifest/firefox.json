@@ -1,1 +1,8 @@
-{}
+{
+  "applications": {
+    "gecko": {
+      "id": "swift@hey.co",
+      "strict_min_version": "53.0"
+    }
+  }
+}

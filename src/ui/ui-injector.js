@@ -12,8 +12,12 @@ const FalconInterfaceInjector = {
     },
 
     courseEditElements: () => {
-
-        let $courseNameEditModal = `<div class="modal fade" style="z-index: 10000" id="edit-course-title-modal" tabindex="-1" role="dialog" aria-labelledby="edit-course-title-modal-label" aria-hidden="true">
+        // only add this if user is logged in...
+        // if it's not logged in, this element doesn't exist.
+        if ($('#loginUser').length !== 1) {
+            return;
+        }
+        let $courseNameEditModal = `<div class="modal fade" style="z-index: 12000" id="edit-course-title-modal" tabindex="-1" role="dialog" aria-labelledby="edit-course-title-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,13 +35,13 @@ const FalconInterfaceInjector = {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" id="save-custom-course-title-button" class="btn btn-primary">Save Title</button>
+                <button type="button" id="save-custom-course-title-button" data-dismiss="modal" class="btn btn-primary">Save Title</button>
             </div>
         </div>
     </div>
 </div>`
         if (!$('#edit-course-title-modal').length) {
-            $('<a class="mr-4 edit-course-name-button" data-toggle="modal"  href="#edit-course-title-modal"> <i class="fe fe-edit-2"></i> Edit</a>').insertBefore('.toolMenus')
+            $(`<a class="mr-4 edit-course-name-button" href="javascript:;" onclick="$('#edit-course-title-modal').modal('show')"> <i class="fe fe-edit-2"></i> Edit</a>`).insertBefore('.toolMenus')
             $('body').append($courseNameEditModal);
         }
     },
@@ -93,7 +97,7 @@ const FalconInterfaceInjector = {
             'fa fa-list-ul': 'fe fe-list',
             'Mrphs-toolTitleNav__link--directurl': 'fe fe-link',
             'Mrphs-toolTitleNav__link--help-popup': 'fe fe-help-circle',
-            'icon-sakai--sakai-resetpass': 'fe fe-key',
+            'icon-sakai--sakai-resetpass': 'fe fe-more-horizontal',
             'icon-sakai--sakai-sitebrowser': 'fe fe-globe'
         }
 
@@ -149,6 +153,13 @@ const FalconInterfaceInjector = {
                 return items[v]
             }));
             wrapper.hide();
+        }
+    },
+
+    // if favourites bar is open and user clicks on anything which navigates away from a page, it should close
+    hideFavouritesBar() {
+        if (!$('#selectSiteModal').hasClass('outscreen')) {
+            $('.view-all-sites-btn').click();
         }
     },
 

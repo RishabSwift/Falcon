@@ -66,7 +66,6 @@ class TableSorter {
     tablesExist() {
         let exists = false;
         this.sortableTables.forEach(table => {
-            console.log($(table));
             if ($(table).length > 0) {
                exists = true;
             }
