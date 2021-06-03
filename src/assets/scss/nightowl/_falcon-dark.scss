@@ -11,6 +11,6 @@ $sidebar-menu-active-bg-color: #2d2d2d;
 $sidebar-menu-active-text-color: #c9c8c5;
 $link-hover-color: darken($primary, 10%);
 
-@import "../shared";
+@import "../main/shared";
 @import "falcon-dark-generated";
 @import "custom";
