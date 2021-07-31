@@ -11,6 +11,7 @@ const FalconInterfaceInjector = {
         $('.Mrphs-toolsNav__menu ul').append(`<li><a href="javascript:;" class="Mrphs-toolsNav__menuitem--link" id="falcon-editor-button" title="Double Click to open. A powerful diagram editor included with Falcon"><span id="falcon-editor-icon" class="Mrphs-toolsNav__menuitem--icon fe fe-edit-2 "></span><span id="falcon-editor-title" class="Mrphs-toolsNav__menuitem--title">Falcon Editor</span></a></li>`)
     },
 
+
     courseEditElements: () => {
         // only add this if user is logged in...
         // if it's not logged in, this element doesn't exist.
@@ -49,7 +50,7 @@ const FalconInterfaceInjector = {
 
     falconResources: () => {
         if ($('.page-header h1').html() === 'Site Resources') {
-            $(`<div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
+            $(`<div style="margin-bottom: 0.35em" id="file-manager-search"></div> <div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
             $('#showForm').hide();
             $(`<h1 id="loading-resources"><i class="fe fa-spin fe-loader"></i> Loading resources...</h1>`).insertAfter('.page-header');
         }

@@ -1,6 +1,7 @@
 import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
 import FileManager from "devextreme/ui/file_manager";
+import TextBox from "devextreme/ui/text_box";
 
 class FalconFileManager {
 
@@ -11,6 +12,9 @@ class FalconFileManager {
     forceRecache = false;
     falconResources = []; // all resources from all courses
 
+    searchString = '';
+
+    falconFileManager;
 
     constructor(courseId, courseName) {
         this.currentCourse = courseName; // The original Course Name
@@ -26,7 +30,7 @@ class FalconFileManager {
         $('#toggle-original-resource').on('click', function () {
             if (showOriginal) {
                 $('#showForm').slideUp();
-                showOriginal = false;x
+                showOriginal = false;
                 $(this).html('Show Original Resources');
 
             } else {
@@ -56,16 +60,48 @@ class FalconFileManager {
         return this;
     }
 
+
     async setupResources() {
 
         let result = await this.getResourcesForCourse();
+
+        // $('#file-manager-search').dxTextBox({
+        //    value: 'lol',
+        //     showClearButton: true,
+        // });
+
+
+        function searchResources(searchText) {
+            const localData = [...result];
+
+            function getValueLogic(result, searchText) {
+                searchText = searchText.toLowerCase();
+                const arr = [];
+                if (result && Array.isArray(result)) {
+                    for (let i = 0; i < result.length; i++) {
+                        const ele = result[i];
+                        ele && ele.name.toLowerCase().includes(searchText)
+                            ? arr.push(ele)
+                            : arr.push(...getValueLogic(ele.items, searchText));
+                    }
+                }
+                return arr;
+            }
+
+            return getValueLogic(localData, searchText);
+        }
+
+
+        // console.log(result);
 
         // make sure we have the element
         if ($('#file-manager').length === 0) {
             return;
         }
 
-        new FileManager(document.getElementById('file-manager'), {
+        let self = this;
+
+        let falconFileManager = new FileManager(document.getElementById('file-manager'), {
             name: "fileManager",
             fileSystemProvider: result,
             rootFolderName: "Falcon",
@@ -132,6 +168,33 @@ class FalconFileManager {
             },
         });
 
+        new TextBox('#file-manager-search', {
+            placeholder: 'Search...',
+            width: '300px',
+            showClearButton: true,
+            valueChangeEvent: "keyup",
+            onValueChanged: function (event) {
+
+
+
+            let searchResult;
+            if (event.value === '' || !event.value) {
+                searchResult = result;
+            } else {
+                self.searchString = event.value;
+                searchResult = searchResources(self.searchString);
+            }
+            setTimeout(function() {
+            falconFileManager.option('fileSystemProvider', searchResult);
+            }, 500);
+
+
+                // event.value = 232;
+                // console.log(event);
+                // $('input[name=file-manager-search]').option
+            },
+        })
+
         // Whenever an item is (double) clicked, download it
         function onItemClick(args) {
             let url = args.fileSystemItem.dataItem.url;
@@ -156,6 +219,19 @@ class FalconFileManager {
             a.href = url;
             a.click();
         }
+
+        // https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing
+        function delay(callback, ms) {
+            var timer = 0;
+            return function() {
+                var context = this, args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    callback.apply(context, args);
+                }, ms || 0);
+            };
+        }
+
     }
 
     // Get resources
