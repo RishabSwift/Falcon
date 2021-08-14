@@ -10,7 +10,7 @@ import FalconInterfaceInjector from "../ui/ui-injector";
 import FalconCourseNameEditor from "./course-name-editor";
 import FalconDarkMode from "./dark-mode";
 import AssetInjector from "../ui/asset-injector";
-
+import FalconAssignments from "./falcon-assignments";
 
 let currentCourseId; // in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
 let currentCourseName;
@@ -24,7 +24,7 @@ const Falcon = {
         Falcon.onSuccess(false);
 
         pjax = new Pjax({
-            elements: "a[href]:not(.Mrphs-sitesNav__dropdown), form[action]:not(#Mrphs-xlogin):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form):not(#selectIndexForm)",
+            elements: "a[href]:not(.Mrphs-sitesNav__dropdown):not(#loginLink1), form[action]:not(#Mrphs-xlogin):not(#loginForm):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form):not(#selectIndexForm)",
             cacheBust: false,
             debug: false,
             selectors: [
@@ -33,13 +33,14 @@ const Falcon = {
                 "meta[name=description]",
                 ".Mrphs-pagebody",
                 ".Mrphs-container--nav-tools",
-                "#topnav_container",
+                // "#topnav_container",
             ],
         });
 
         document.addEventListener("pjax:success", Falcon.onSuccess)
         document.addEventListener('pjax:send', Falcon.onSend)
         document.addEventListener('pjax:complete', Falcon.onComplete)
+
 
 
         Falcon.setupTopbar();
@@ -72,17 +73,22 @@ const Falcon = {
             FalconInterfaceInjector.initAnimations();
         }
 
+        FalconInterfaceInjector.setActiveClassToNavigation();
         FalconInterfaceInjector.replaceIcons();
         FalconInterfaceInjector.announcementPaginationButtonsFix();
         FalconInterfaceInjector.hideFavouritesBar();
+        FalconInterfaceInjector.welcomeMessageAlert();
+        // FalconInterfaceInjector.falconAssignments();
 
         Falcon.saveCourseId();
+
         new TableSorter();
         new FalconDarkMode();
         new FalconCourseNameEditor();
         new FalconEditor(currentCourseId);
 
         new FalconFileManager(currentCourseId, currentCourseName);
+        // new FalconAssignments(currentCourseId);
         Falcon.injectResources();
         // Needed to initiate the matchParser
 
@@ -103,18 +109,11 @@ const Falcon = {
 
     injectResources() {
 
-        // AssetInjector.once()
-        //     .falconAssets()
-        //     .endOfBody()
-        //     .injectScript('/assets/dx-diagram.min.js', 'dx-diagram')
-        //     .injectScript('/assets/dx.all.js', 'dx-all')
-
         AssetInjector.once().owlAssets()
             .endOfHead()
             .injectScript('/library/js/spinner.js?version=20_2-owl1', 'owl-spinner-src')
             .injectScript('/sakai-assignment-tool/js/studentViewSubmission.js?version=20_2-owl1', 'owl-stdviewsubmission-src')
             .injectScript('/sakai-assignment-tool/js/assignments.js?version=20_2-owl1', 'owl-assignments-src')
-            // .injectScript('/library/skin/morpheus-default/js/morpheus.scripts.min.js?version=20_2-owl1', 'owl-morpheus-src')
             .injectScript('/library/js/mathjax/MathJax.js?config=default,Safe', 'falcon-mathjax')
             .injectScript('/gradebookng-tool/scripts/gradebook-grade-summary.js?version=20_2-owl1', 'falcon-gradebook-js')
             .injectStyle('/gradebookng-tool/styles/gradebook-grades.css?version=20_2-owl1', 'falcon-gradebook-css')
@@ -122,6 +121,7 @@ const Falcon = {
             .injectStyle('/messageforums-tool/css/msgcntr.css', 'falcon-forum-css')
             .injectRawHtml(`<script class="falcon-math-jax-parser">function parseMath() { try {MathJax.Hub.Typeset()} catch (e) {/*empty atm*/} }</script>`, 'falcon-math-jax-parser')
             .injectRawHtml(`<script type="text/x-mathjax-config"> MathJax.Hub.Config({ messageStyle: "none", tex2jax:  { inlineMath: [['\\\\(','\\\\)']] } });</script>`, 'falcon-math-jax-config');
+
         // MathJax Parser
         $(document).ready(function () {
             location.href = "javascript:parseMath(); void 0"

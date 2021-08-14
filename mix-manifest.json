@@ -1,6 +1,7 @@
 {
     "/dist/falcon.js": "/dist/falcon.js",
     "/dist/falcon.css": "/dist/falcon.css",
+    "/dist/falcon-dark.css": "/dist/falcon-dark.css",
     "/dist/chrome/background.js": "/dist/chrome/background.js",
     "/dist/chrome/options.html": "/dist/chrome/options.html",
     "/dist/chrome/popup.html": "/dist/chrome/popup.html",
@@ -34,6 +35,5 @@
     "/dist/chrome/fonts/dxiconsmaterial.ttf": "/dist/chrome/fonts/dxiconsmaterial.ttf",
     "/dist/chrome/fonts/dxiconsmaterial.woff": "/dist/chrome/fonts/dxiconsmaterial.woff",
     "/dist/chrome/fonts/dxiconsmaterial.woff2": "/dist/chrome/fonts/dxiconsmaterial.woff2",
-    "/dist/chrome/fonts/feather.scss": "/dist/chrome/fonts/feather.scss",
-    "/dist/falcon-dark.css": "/dist/falcon-dark.css"
+    "/dist/chrome/fonts/feather.scss": "/dist/chrome/fonts/feather.scss"
 }

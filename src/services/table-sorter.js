@@ -25,7 +25,7 @@ class TableSorter {
         // These tables do not have <thead>... so convert the header to thead...
         let theadElement = $('table tbody tr')[0];
 
-        $('table').prepend(`<thead>${theadElement}</thead>`);
+        $('table').prepend(`<thead>${theadElement}</thead>`).removeClass('table-bordered');
         $('table thead').html(theadElement);
 
         setTimeout(function () {
