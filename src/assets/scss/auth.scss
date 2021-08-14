@@ -1,0 +1,49 @@
+#Mrphs-xlogin  {
+
+  border-radius: 15px !important;
+
+  fieldset {
+    padding: 20px !important;
+
+    #eid, #pw {
+      padding: 0.4em !important;
+      border-radius: 5px !important;
+    }
+
+    #eid {
+      margin-bottom: 0.75em !important;
+    }
+
+    input[type=submit], input[name=cancel]{
+      width: 100% !important;
+      padding: 0.70em 0 !important;
+      margin-right: 0 !important;
+    }
+
+    input[name=cancel] {
+      margin-top: 0.35em !important;
+      padding: 0.50em 0 !important;
+      border-radius: 5px !important;
+    }
+  }
+
+  .logo {
+    background: black url(#{$logoUrl}) no-repeat center center !important;
+  }
+}
+
+#loginForm {
+  #eid, #pw {
+    border-radius: 5px !important;
+    padding: 0.05em .35em !important;
+  }
+
+  .Mrphs-loginForm__button {
+    background: $primary !important;
+    border: $primary-darker !important;
+    color: $white !important;
+    &:hover {
+      background: $link-hover-color !important;
+    }
+  }
+}

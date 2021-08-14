@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 const FalconInterfaceInjector = {
 
     darkModeButton: () => {
@@ -10,6 +12,13 @@ const FalconInterfaceInjector = {
     falconEditorButton: () => {
         $('.Mrphs-toolsNav__menu ul').append(`<li><a href="javascript:;" class="Mrphs-toolsNav__menuitem--link" id="falcon-editor-button" title="Double Click to open. A powerful diagram editor included with Falcon"><span id="falcon-editor-icon" class="Mrphs-toolsNav__menuitem--icon fe fe-edit-2 "></span><span id="falcon-editor-title" class="Mrphs-toolsNav__menuitem--title">Falcon Editor</span></a></li>`)
     },
+
+    welcomeMessageAlert: () => {
+        // $('.Mrphs-pagebody').prepend(`
+        // <div class="alert alert-primary">  </div>
+        // `);
+    },
+
 
     courseEditElements: () => {
         // only add this if user is logged in...
@@ -49,12 +58,36 @@ const FalconInterfaceInjector = {
 
     falconResources: () => {
         if ($('.page-header h1').html() === 'Site Resources') {
-            $(`<div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
+            $(`<div style="margin-bottom: 0.35em" id="file-manager-search"></div> <div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
             $('#showForm').hide();
             $(`<h1 id="loading-resources"><i class="fe fa-spin fe-loader"></i> Loading resources...</h1>`).insertAfter('.page-header');
         }
     },
 
+    // add is-selected to selected site...
+    setActiveClassToNavigation: () => {
+        $('.link-container').on('click', function () {
+            $('.Mrphs-sitesNav__menuitem').removeClass('is-selected');
+            $(this).parent().addClass('is-selected');
+        })
+    },
+
+    falconAssignments: () => {
+        // $('#listAssignmentsForm')
+        let originalAssignmentForm = $('[name=listAssignmentsForm]');
+
+        if (!originalAssignmentForm) {
+            return;
+        }
+
+        let assignmentToolbar = originalAssignmentForm.siblings('.sakai-table-toolBar');
+
+        if (!assignmentToolbar) {
+            return;
+        }
+
+        $(`<div id="falcon-assignments"><h3><i class="fe fa-spin fe-loader"></i> Loading assignments...</h3></div>`).insertBefore(assignmentToolbar);
+    },
 
     initAnimations: () => {
         $('.Mrphs-pagebody').addClass('animate__animated animate__fadeIn');

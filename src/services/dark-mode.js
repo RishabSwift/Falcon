@@ -5,7 +5,9 @@ import FalconInterfaceInjector from "../ui/ui-injector";
 class FalconDarkMode {
     storageKey = 'darkMode'
     assetUrl = './assets/falcon-dark.css';
+    assetUrlLight = './assets/falcon.css';
     className = 'falcon-dark-mode';
+    classNameLight = 'falcon-normal-mode';
     isDarkModeEnabled;
 
     constructor() {
@@ -45,6 +47,7 @@ class FalconDarkMode {
     }
 
     removeDarkMode() {
+        // AssetInjector.falconAssets().alsoToIframes().once().injectStyle(this.assetUrlLight, this.classNameLight);
         AssetInjector.falconAssets().alsoToIframes().removeInjectionByClassName(this.className);
         $("#dark-mode-toggle-icon").removeClass('fa-toggle-on');
         this.isDarkModeEnabled = false
