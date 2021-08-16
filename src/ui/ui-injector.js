@@ -14,9 +14,35 @@ const FalconInterfaceInjector = {
     },
 
     welcomeMessageAlert: () => {
-        // $('.Mrphs-pagebody').prepend(`
-        // <div class="alert alert-primary">  </div>
-        // `);
+        $('.Mrphs-pagebody').prepend(`
+        <div class="alert alert-primary">
+        <h2 class="mt-0 text-primary"><i class="fe fe-check"></i> Falcon is installed!</h2>
+        
+        <h4>Thanks for installing Falcon!</h4>
+        <p>Remember, Falcon does not know who you are, see your courses, or track how you use Falcon. </p>
+        <p>It is <a target="_blank" href="https://github.com/RishabSwift/Falcon">open-source <i class="fe fe-external-link"></i></a>, so you can provide feedback and even contribute!</p>
+        <hr>
+       <h3>Default Settings</h3>
+       <p>Falcon has many great features, all of which are enabled by default. Select the ones you'd like enabled. </p>
+       
+   
+   <p>
+        <label><input type="checkbox">  Enable Falcon</label>       
+      <br>
+      <br>
+        <label><input type="checkbox">  Falcon Resources - Entirely New Resources Page</label>
+        <br>
+        <label><input type="checkbox">  Falcon Editor - A brand new editor allows you to draw flow-charts, diagrams, and more.</label>
+        <br>
+        <label><input type="checkbox">  Custom Course Names - Customize your course names and avoid those ridicules long course codes.</label>
+        <br>
+        <label><input type="checkbox">  Custom Falcon Icons - Enable custom icons on the sidebar (notice how beautiful they look ;)</label>
+   </p>
+   
+   <p>You can change these settings anytime from the top right corner: [Your Name] -> Falcon Settings</p>   
+       
+</div>
+        `);
     },
 
 
