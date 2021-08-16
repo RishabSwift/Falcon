@@ -27,7 +27,7 @@ It will be much faster when you navigate OWL because a full refresh is not done 
 
 ### Revamped Resources page
 
-The new resources page is extremely fast and offers an instant file-browsing experience. No more full-page refresh just to browse folders. And if for any reason you need to access the old resources system, you are just one click away.
+The new resources page is extremely fast and offers an instant file-browsing experience. You can also search for any files or folders instantly. No more full-page refresh just to browse folders. And if for any reason you need to access the old resources system, you are just one click away.
 
 <img src="/images/banners/new resources.png"/>
 
