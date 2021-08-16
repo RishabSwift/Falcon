@@ -2,6 +2,7 @@ import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
 import FileManager from "devextreme/ui/file_manager";
 import TextBox from "devextreme/ui/text_box";
+import PopUp from "devextreme/ui/popup";
 
 class FalconFileManager {
 
@@ -19,6 +20,7 @@ class FalconFileManager {
     constructor(courseId, courseName) {
         this.currentCourse = courseName; // The original Course Name
         this.courseId = courseId; // current course ID in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
+
         FalconInterfaceInjector.falconResources();
         this.addEventListeners();
     }
@@ -40,9 +42,11 @@ class FalconFileManager {
             }
         })
 
-        this.setupResources().then(() => {
+        setTimeout(function() {
+        self.setupResources().then(() => {
             $('#loading-resources').remove();
         });
+        }, 0)
 
         // $('#refresh-resources-button').on('click', function () {
         //     $(this).hide();
@@ -99,6 +103,8 @@ class FalconFileManager {
             return;
         }
 
+        var popup = new PopUp('#photo-popup');
+
         let self = this;
 
         let falconFileManager = new FileManager(document.getElementById('file-manager'), {
@@ -115,11 +121,11 @@ class FalconFileManager {
             },
             onSelectedFileOpened: function (e) {
                 if (isImage(e.file.dataItem.mimeType)) {
-                    var popup = $("#photo-popup").dxPopup("instance");
-                    popup.option({
+                   popup.option({
                         "title": e.file.name,
-                        "contentTemplate": `<img src="${e.file.dataItem.url}" class="photo-popup-image"/>`,
+                        "contentTemplate": `<img src="${e.file.dataItem.url}" class="photo-popup-image"/><div  style="margin-top: 1.5rem"><a target="_blank"href="${e.file.dataItem.url}"><i class="fe fe-external-link"></i> Open in New Tab</a></div>`,
                     });
+
                     popup.show();
                 } else {
                     openFileInNewTab(e.file.dataItem.url);

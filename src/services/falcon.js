@@ -33,7 +33,7 @@ const Falcon = {
                 "meta[name=description]",
                 ".Mrphs-pagebody",
                 ".Mrphs-container--nav-tools",
-                // "#topnav_container",
+                "#topnav_container",
             ],
         });
 
@@ -77,7 +77,7 @@ const Falcon = {
         FalconInterfaceInjector.replaceIcons();
         FalconInterfaceInjector.announcementPaginationButtonsFix();
         FalconInterfaceInjector.hideFavouritesBar();
-        FalconInterfaceInjector.welcomeMessageAlert();
+        // FalconInterfaceInjector.welcomeMessageAlert();
         // FalconInterfaceInjector.falconAssignments();
 
         Falcon.saveCourseId();
