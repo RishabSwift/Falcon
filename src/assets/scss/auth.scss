@@ -43,11 +43,11 @@
   }
 
   .Mrphs-loginForm__button {
-    background: $primary !important;
+    background: $nav-bg-color !important;
     border: $primary-darker !important;
-    color: $white !important;
+    color: white !important;
     &:hover {
-      background: $link-hover-color !important;
+      background: $primary-hover-color !important;
     }
   }
 }
