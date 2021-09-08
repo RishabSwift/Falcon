@@ -18,6 +18,9 @@ $urlPath: "chrome-extension://__MSG_@@extension_id__";
 @import "../css/owl/lesson-builder-checklist.css";
 
 @import "vars";
+
+@import "bootstrap/main";
+
 @import "helper";
 @import "vars-light";
 @import "fonts";
@@ -26,3 +29,6 @@ $urlPath: "chrome-extension://__MSG_@@extension_id__";
 @import "auth";
 @import "loading-animation";
 @import "alert";
+
+
+

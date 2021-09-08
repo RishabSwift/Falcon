@@ -41,6 +41,14 @@ Especially useful when you're just starting a new semester, and you're not used 
 
 -----
 
+### New Announcements Experience
+
+Scroll through all your announcements at once like it's your personal feed.
+
+<img src="/images/banners/new announcements.png"/>
+
+-----
+
 ### Powerful New Editor
 
 Falcon includes a new editor which you can use to create flow charts, diagrams, and more. Each course gets its own editor, and changes are saved instantly. You can also export your diagrams as PNG, JPG or SVG.
@@ -54,12 +62,6 @@ Falcon includes a new editor which you can use to create flow charts, diagrams, 
 OWL offers sorting of announcements, assignments, etc. but it takes a *full* page refresh just to sort, making it an awful experience. Falcon sorts *instantly*. Falcon also allows you to search tables, too.
 
 <img src="/images/banners/sort-and-search-tables.png"/>
-
-
-----
-## Coming Soon
-
-- OWL currently has no checks in place to ensure that a resource is not loaded more than once. This results in many libraries and packages being requested multiple times. Falcon will soon resolve this issue.
 
 ----
 

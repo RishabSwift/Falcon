@@ -1267,7 +1267,7 @@ html {
 }
 
 body {
-  color: #dad3c9;
+  color: #c8c8c8;
   background-color: $white
 }
 
@@ -3675,9 +3675,6 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
   background-color: $white !important
 }
 
-body {
-  color: #dad3c9
-}
 
 body.Mrphs-portalBody {
   background-color: #1c1e1e
@@ -10740,10 +10737,7 @@ legend {
 html {
   -webkit-tap-highlight-color: rgba(232, 230, 227, 0);
 }
-body {
-  color: rgb(200, 195, 188);
-  background-color: rgb(24, 26, 27);
-}
+
 a {
   color: rgb(105, 166, 213);
   text-decoration-color: initial;
@@ -13132,8 +13126,7 @@ html {
   -webkit-tap-highlight-color: rgba(232, 230, 227, 0);
 }
 body {
-  color: rgba(232, 230, 227, 0.65);
-  background-color: rgb(24, 26, 27);
+  background-color: #c9d1d9;
 }
 [tabindex="-1"]:focus {
   outline-color: initial !important;
@@ -13144,7 +13137,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: rgba(232, 230, 227, 0.85);
+  color: #c9d1d9;
 }
 abbr[data-original-title],
 abbr[title] {

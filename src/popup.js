@@ -1,4 +1,4 @@
-fetch('https://rishab.me/falcon/YdkgJSKSrlWagLYNlT5Q')
+fetch('https://www.owlfalcon.com/popup-message')
     .then(response => response.text())
     .then(response => {
         document.getElementById('message').innerHTML = response;

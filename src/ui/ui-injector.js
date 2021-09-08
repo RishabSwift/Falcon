@@ -84,7 +84,8 @@ const FalconInterfaceInjector = {
 
     falconResources: () => {
         if ($('.page-header h1').html() === 'Site Resources') {
-            $(`<div style="margin-bottom: 0.35em" id="file-manager-search"></div> <div id="file-manager"></div><div id="photo-popup"></div><button id="toggle-original-resource" class="mt-5">Show Original Resources</button>`).insertAfter($('.page-header'));
+            $(`<div class="pb-3"><button id="toggle-original-resource" style="float: right" class="btn btn-primary">Classic Viewer</button></div>`).insertBefore($('.page-header h1'));
+            $(`<div id="file-manager-container"><div style="margin-bottom: 0.35em" id="file-manager-search"></div> <div id="file-manager"></div><div id="photo-popup"></div></div>`).insertAfter($('.page-header'));
             $('#showForm').hide();
             $(`<h1 id="loading-resources"><i class="fe fa-spin fe-loader"></i> Loading resources...</h1>`).insertAfter('.page-header');
         }
@@ -215,12 +216,44 @@ const FalconInterfaceInjector = {
         }
     },
 
+    falconAnnouncementsSetup() {
+        $(`<div id="falcon-announcements"><h1> <i class="fe fa-spin fe-loader"></i> Loading Announcements...</h1></div>`).insertAfter($('.page-header'));
+        $(`<button id="toggle-announcements-viewer" style="float:right" class="btn btn-primary">Classic Viewer</button>`).insertBefore($('.page-header h1'));
+        this.removeToolbar();
+        this.hideElement($('form[name="announcementListForm"]'))
+    },
+
+    removeToolbar() {
+        this.removeElement($('.sakai-table-toolBar'));
+    },
+
+    removeElement(element) {
+        $(element).remove();
+    },
+
+    hideElement(element) {
+        $(element).hide();
+    },
+
+    showElement(element) {
+        $(element).hide();
+    },
+
     // if favourites bar is open and user clicks on anything which navigates away from a page, it should close
     hideFavouritesBar() {
         if (!$('#selectSiteModal').hasClass('outscreen')) {
             $('.view-all-sites-btn').click();
         }
     },
+
+    // determine if the current page title in UI matches
+    isCurrentPageTitle(title, elem = '.page-header h1') {
+        return $(elem).text().includes(title);
+    },
+
+    pageContainsElement(elem) {
+      return !! $(elem).length;
+    }
 
 
 }
