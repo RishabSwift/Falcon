@@ -55,11 +55,12 @@ class FalconAnnouncement {
     }
 
     setupAnnouncements(announcements) {
+        let announcementElem = $('#falcon-announcements');
+        announcementElem.html('');
+
         if (!announcements.length) {
-            $('#falcon-announcements').html('');
             return;
         }
-
         for (let announcement of announcements) {
             this.insertAnnouncement(announcement);
         }
@@ -69,7 +70,6 @@ class FalconAnnouncement {
 
         let time = new Date(announcement.createdOn);
         let announcementElem = $('#falcon-announcements');
-        announcementElem.html('');
         $(`
 
 <div class="card shadow">
