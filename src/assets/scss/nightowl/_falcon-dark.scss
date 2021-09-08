@@ -7,6 +7,7 @@ $primary-darker: #e3a1ff;
 $text-color: #12263f;
 $white: #191a1b;
 $true-white: #000;
+$fff: #fff;
 $light: $white;
 $tab-hover-color: #343435;
 $sidebar-menu-active-bg-color: #2d2d2d;
@@ -15,7 +16,21 @@ $link-hover-color: darken($primary, 10%);
 $primary-light: #261544;
 $primary-hover-color: #4c00c1;
 
+$border-color: #393d3d;
+
+
+$box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+0 2px 4px rgba(0,0,0,0.07),
+0 4px 8px rgba(0,0,0,0.07),
+0 8px 16px rgba(0,0,0,0.07),
+0 16px 32px rgba(0,0,0,0.07),
+0 32px 64px rgba(0,0,0,0.07);
+
+//@import "../../../../node_modules/bootstrap/scss/variables";
+
 @import "../vars";
+@import "../bootstrap/main-dark";
+
 @import "../shared";
 @import "falcon-dark-generated";
 @import "custom";

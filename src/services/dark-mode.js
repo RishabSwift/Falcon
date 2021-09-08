@@ -44,6 +44,7 @@ class FalconDarkMode {
         AssetInjector.falconAssets().alsoToIframes().once().injectStyle(this.assetUrl, this.className)
         $("#dark-mode-toggle-icon").addClass('fa-toggle-on');
         this.isDarkModeEnabled = true;
+        this.fixPortalColors();
     }
 
     removeDarkMode() {
@@ -51,6 +52,14 @@ class FalconDarkMode {
         AssetInjector.falconAssets().alsoToIframes().removeInjectionByClassName(this.className);
         $("#dark-mode-toggle-icon").removeClass('fa-toggle-on');
         this.isDarkModeEnabled = false
+    }
+
+    fixPortalColors() {
+        // sometimes instructors set certain colors to the portal (like black for text) which, when dark mode is enabled, cannot be overwritten as easily.
+        // so remove those overwritten styles
+        $('.portletBody.siteDescription [style*="background-color"]').css('background-color', '');
+        $('.portletBody.siteDescription [style*="background"]').css('background-color', '');
+        $('.portletBody.siteDescription [style*="color"]').css('color', '');
     }
 
     // Enable and disable are separate from the injectDarkMode and removeDarkMode because we don't want to save the settings everytime from the constructor

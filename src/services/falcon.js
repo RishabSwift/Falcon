@@ -11,6 +11,7 @@ import FalconCourseNameEditor from "./course-name-editor";
 import FalconDarkMode from "./dark-mode";
 import AssetInjector from "../ui/asset-injector";
 import FalconAssignments from "./falcon-assignments";
+import FalconAnnouncement from "./announcement";
 
 let currentCourseId; // in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
 let currentCourseName;
@@ -40,8 +41,6 @@ const Falcon = {
         document.addEventListener("pjax:success", Falcon.onSuccess)
         document.addEventListener('pjax:send', Falcon.onSend)
         document.addEventListener('pjax:complete', Falcon.onComplete)
-
-
 
         Falcon.setupTopbar();
 
@@ -88,6 +87,8 @@ const Falcon = {
         new FalconEditor(currentCourseId);
 
         new FalconFileManager(currentCourseId, currentCourseName);
+        new FalconAnnouncement(currentCourseId);
+
         // new FalconAssignments(currentCourseId);
         Falcon.injectResources();
         // Needed to initiate the matchParser

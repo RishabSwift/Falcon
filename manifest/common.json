@@ -1,7 +1,7 @@
 {
   "name": "Falcon",
   "description": "Add various new functionalities and improvements to Western's OWL site",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "manifest_version": 2,
   "icons": {
     "16": "./images/falcon-16x16.png",
@@ -23,12 +23,15 @@
     "storage",
     "tabs",
     "https://owl.uwo.ca/*/*",
-    "https://rishab.me/*"
+    "https://www.owlfalcon.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://owl.uwo.ca/*"
+      ],
+      "exclude_matches": [
+        "https://owl.uwo.ca/*.pdf"
       ],
       "css": [
         "./assets/falcon.css"

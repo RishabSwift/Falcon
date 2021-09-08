@@ -11,8 +11,14 @@
   --animate-duration: .3s !important;
 }
 
-.navIntraTool {
 
+//hide announcements to start
+form[name="announcementListForm"] {
+  display:  none;
+}
+
+#favorite-settings-pane button[aria-checked=false] :first-child, #favorite-settings-pane button[aria-checked=true] :last-child {
+  background-color: $nav-bg-color !important;
 }
 
 button:not(.btn-primary),
@@ -150,7 +156,7 @@ input, button {
 
 .Mrphs-multipleTools .Mrphs-container {
   border-radius: 10px !important;
-  box-shadow: 1px 1px 5px rgb(0 0 0 / 20%);
+  box-shadow: $box-shadow;
 }
 
 .Mrphs-toolTitleNav.Mrphs-container--toolTitleNav {
