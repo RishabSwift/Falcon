@@ -1,5 +1,7 @@
 import FalconInterfaceInjector from "../ui/ui-injector";
 import Core from "./core";
+import Falcon from "./falcon";
+import FalconDarkMode from "./dark-mode";
 
 class FalconAnnouncement {
 
@@ -10,17 +12,31 @@ class FalconAnnouncement {
         this.courseId = courseId;
 
 
-        // if currently on announcements page...
-        if (FalconInterfaceInjector.pageContainsElement('form[name=announcementListForm]')) {
+        // if currently on announcements page... and not on the user home page...
+        if (FalconInterfaceInjector.pageContainsElement('form[name=announcementListForm]') && !FalconInterfaceInjector.urlContainsText('~')) {
 
             FalconInterfaceInjector.falconAnnouncementsSetup();
             this.addEventListeners();
 
             this.fetch();
-
         }
     }
 
+    // because we have set the announcement form to be hidden by default... fix it so it's not hidden in dark mode..
+    // and also fix the colors
+    static fixDarkModeAnnouncement() {
+        $('#falcon-announcements [style*="color"]').css('color', '');
+        $('#falcon-announcements [style*="background-color"]').css('background-color', '');
+        $('#falcon-announcements [style*="background"]').css('background-color', '');
+        $('#falcon-announcements [style*="border-bottom"]').css('border-color', '#393d3d');
+        $('#falcon-announcements [style*="border"]').css('border-color', '#393d3d');
+    }
+
+    // both light and dark mode...
+    static fixAnnouncement() {
+        $('#falcon-announcements [style*="font-size"]').css('font-size', '');
+        $('#falcon-announcements [style*="font-family"]').css('font-family', '');
+    }
 
     addEventListeners() {
 
@@ -45,13 +61,18 @@ class FalconAnnouncement {
     }
 
     fetch() {
-        let url = `${this.API_URL}/${this.courseId}.json`;
+        let url = `${this.API_URL}/${this.courseId}.json?n=120`;
 
         fetch(url)
             .then(response => response.json())
             .then(response => {
                 this.setupAnnouncements(response.announcement_collection);
-            })
+            }).then(() => {
+            if (FalconDarkMode.isDarkModeEnabled()) {
+                FalconAnnouncement.fixDarkModeAnnouncement();
+            }
+            FalconAnnouncement.fixAnnouncement();
+        })
     }
 
     setupAnnouncements(announcements) {
@@ -64,6 +85,9 @@ class FalconAnnouncement {
         for (let announcement of announcements) {
             this.insertAnnouncement(announcement);
         }
+
+
+        // Fix the dark mode...
     }
 
     insertAnnouncement(announcement) {

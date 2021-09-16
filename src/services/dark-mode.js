@@ -1,6 +1,7 @@
 import FalconStorage from "./storage";
 import AssetInjector from "../ui/asset-injector";
 import FalconInterfaceInjector from "../ui/ui-injector";
+import FalconAnnouncement from "./announcement";
 
 class FalconDarkMode {
     storageKey = 'darkMode'
@@ -19,11 +20,16 @@ class FalconDarkMode {
         })
     }
 
+
     setupEventListeners() {
         let self = this;
         $('#dark-mode-toggle').on('click', function () {
             self.toggle();
         })
+    }
+
+    static isDarkModeEnabled() {
+        return $("#dark-mode-toggle-icon").hasClass('fa-toggle-on');
     }
 
     isEnabled() {
@@ -45,6 +51,7 @@ class FalconDarkMode {
         $("#dark-mode-toggle-icon").addClass('fa-toggle-on');
         this.isDarkModeEnabled = true;
         this.fixPortalColors();
+        FalconAnnouncement.fixDarkModeAnnouncement();
     }
 
     removeDarkMode() {
@@ -61,6 +68,8 @@ class FalconDarkMode {
         $('.portletBody.siteDescription [style*="background"]').css('background-color', '');
         $('.portletBody.siteDescription [style*="color"]').css('color', '');
     }
+
+
 
     // Enable and disable are separate from the injectDarkMode and removeDarkMode because we don't want to save the settings everytime from the constructor
     enable() {
