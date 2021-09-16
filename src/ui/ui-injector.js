@@ -253,6 +253,10 @@ const FalconInterfaceInjector = {
 
     pageContainsElement(elem) {
       return !! $(elem).length;
+    },
+
+    urlContainsText(text) {
+        return window.location.href.indexOf(text) > -1;
     }
 
 

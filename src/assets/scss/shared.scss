@@ -12,10 +12,10 @@
 }
 
 
-//hide announcements to start
-form[name="announcementListForm"] {
-  display:  none;
-}
+//hide announcements to start.. commented bc issue with announcement panel in home page
+//form[name="announcementListForm"] {
+//  display:  none;
+//}
 
 #favorite-settings-pane button[aria-checked=false] :first-child, #favorite-settings-pane button[aria-checked=true] :last-child {
   background-color: $nav-bg-color !important;

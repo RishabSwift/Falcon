@@ -11,6 +11,11 @@ html {
   border-color: #2c0838;
 }
 
+input[type=radio]:checked {
+  background-color: #6400ff;
+  border-color: #9e60ff;
+}
+
 .caption, .tablesorter-bootstrap>tbody>tr.even>td, .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
 .gb-summary-category-row td, .gb-summary-category-row th,
 .tablesorter-bootstrap>tbody>tr.odd>td, .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td{
@@ -3798,10 +3803,7 @@ label.disabled {
   color: #a19888
 }
 
-input[type=radio]:checked {
-  background-image: radial-gradient(circle at center center, #1a1b1c 0, #1a1b1c 48%, $white 58%);
-  background-color: initial
-}
+
 
 ins, u {
   text-decoration-color: initial

@@ -1,7 +1,7 @@
 {
   "name": "Falcon",
   "description": "Add various new functionalities and improvements to Western's OWL site",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "manifest_version": 2,
   "icons": {
     "16": "./images/falcon-16x16.png",
