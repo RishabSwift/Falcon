@@ -1,3 +1,5 @@
+import FalconStorage from "./services/storage";
+
 var isExtensionOn = true;
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -8,3 +10,15 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         }
     }
 })
+
+console.log(2323);
+
+// FalconStorage.sync().get('falconEnabled').then(data => {
+//     console.log(222, data);
+// });
+//
+// chrome.runtime.onInstalled.addListener(function(details){
+//     FalconStorage.sync().set({
+//         falconEnabled: true,
+//     });
+// })
