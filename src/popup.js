@@ -14,6 +14,16 @@ let activeIcon = $('#status-active-icon');
 let inactiveIcon = $('#status-inactive-icon');
 
 
+(new Promise((resolve, reject) =>
+    chrome.storage['sync'].get('falconEnabled', result =>
+        chrome.runtime.lastError
+            ? reject(Error(chrome.runtime.lastError.message))
+            : resolve(result)
+    )
+)).then(response => {
+    console.log(response);
+});
+
 enableButton.on('click', function() {
     toggleButton(false);
 })
@@ -30,6 +40,11 @@ function updateButtonVisibility(isEnabled) {
         inactiveText.hide();
         activeIcon.show();
         inactiveIcon.hide();
+
+
+
+
+
     } else {
         enableButton.show();
         disableButton.hide();
@@ -37,6 +52,10 @@ function updateButtonVisibility(isEnabled) {
         activeText.hide();
         inactiveIcon.show();
         activeIcon.hide();
+
+
+
+
     }
 }
 
@@ -51,10 +70,28 @@ chrome.runtime.getBackgroundPage(function (bgPage) {
     updateButtonVisibility(bgPage.isExtensionOn);
 
     enableButton.on('click', function() {
+        $('#falcon-alert').html(`<div class="alert alert-primary mt-3 mb-3"><h4>Falcon is active.</h4> Refresh your page to take effect.`)
         toggleButton(true);
+
+        new Promise((resolve, reject) =>
+            chrome.storage['sync'].set({falconEnabled: true}, () =>
+                chrome.runtime.lastError
+                    ? reject(Error(chrome.runtime.lastError.message))
+                    : resolve()
+            )
+        );
     })
     disableButton.on('click', function() {
+        $('#falcon-alert').html(`<div class="alert alert-warning mt-3 mb-3"><h4>Falcon has been disabled.</h4> The only thing still enabled is the purple theme of OWL, which <u>does not impact any functionality since it's just a theme</u>. Refresh your page to take effect.`)
         toggleButton(false);
+
+        new Promise((resolve, reject) =>
+            chrome.storage['sync'].set({falconEnabled: false}, () =>
+                chrome.runtime.lastError
+                    ? reject(Error(chrome.runtime.lastError.message))
+                    : resolve()
+            )
+        );
     })
 
 });

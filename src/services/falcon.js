@@ -12,6 +12,7 @@ import FalconDarkMode from "./dark-mode";
 import AssetInjector from "../ui/asset-injector";
 import FalconAssignments from "./falcon-assignments";
 import FalconAnnouncement from "./announcement";
+import FalconGradebook from "./gradebook";
 
 let currentCourseId; // in format 39cbafa5-fa7b-4a18-8ca8-d7ae032c8de8
 let currentCourseName;
@@ -20,7 +21,6 @@ let pjax;
 const Falcon = {
 
     start: () => {
-
         // loaded only once on page load (regular page load, no pjax)
         Falcon.onSuccess(false);
 
@@ -88,6 +88,7 @@ const Falcon = {
 
         new FalconFileManager(currentCourseId, currentCourseName);
         new FalconAnnouncement(currentCourseId);
+        new FalconGradebook();
 
         // new FalconAssignments(currentCourseId);
         Falcon.injectResources();

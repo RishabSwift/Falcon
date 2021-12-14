@@ -44,21 +44,11 @@ class FalconFileManager {
             }
         })
 
-
-        setTimeout(function() {
-        self.setupResources().then(() => {
-            $('#loading-resources').remove();
-        });
+        setTimeout(function () {
+            self.setupResources().then(() => {
+                $('#loading-resources').remove();
+            });
         }, 0)
-
-        // $('#refresh-resources-button').on('click', function () {
-        //     $(this).hide();
-        //     $('#last-fetched-time').html('Re-
-
-        //     // startFileManager(true).then(() => {
-        //     //     $(this).show();
-        //     // })
-        // })
 
     }
 
@@ -98,9 +88,6 @@ class FalconFileManager {
             return getValueLogic(localData, searchText);
         }
 
-
-        // console.log(result);
-
         // make sure we have the element
         if ($('#file-manager').length === 0) {
             return;
@@ -116,6 +103,23 @@ class FalconFileManager {
             rootFolderName: "Falcon",
             selectionMode: "single",
             currentPath: this.currentCourse,
+            contextMenu: {
+                items: [
+                    // Specify a predefined item's name and optional settings
+                    // {
+                    //     name: "download",
+                    //     visible: true,
+                    // },
+                    {
+                        text: 'Download',
+                        icon: 'download',
+                    },
+                    {
+                        name: "refresh",
+                        beginGroup: true
+                    }
+                ]
+            },
             height: function () {
                 return window.innerHeight / 1.5;
             },
@@ -124,7 +128,7 @@ class FalconFileManager {
             },
             onSelectedFileOpened: function (e) {
                 if (isImage(e.file.dataItem.mimeType)) {
-                   popup.option({
+                    popup.option({
                         "title": e.file.name,
                         "contentTemplate": `<img src="${e.file.dataItem.url}" class="photo-popup-image"/><div  style="margin-top: 1.5rem"><a target="_blank"href="${e.file.dataItem.url}"><i class="fe fe-external-link"></i> Open in New Tab</a></div>`,
                     });
@@ -147,7 +151,6 @@ class FalconFileManager {
 
 
             },
-
             itemView: {
                 details: {
                     columns: [
@@ -185,17 +188,16 @@ class FalconFileManager {
             onValueChanged: function (event) {
 
 
-
-            let searchResult;
-            if (event.value === '' || !event.value) {
-                searchResult = result;
-            } else {
-                self.searchString = event.value;
-                searchResult = searchResources(self.searchString);
-            }
-            setTimeout(function() {
-            falconFileManager.option('fileSystemProvider', searchResult);
-            }, 500);
+                let searchResult;
+                if (event.value === '' || !event.value) {
+                    searchResult = result;
+                } else {
+                    self.searchString = event.value;
+                    searchResult = searchResources(self.searchString);
+                }
+                setTimeout(function () {
+                    falconFileManager.option('fileSystemProvider', searchResult);
+                }, 500);
 
 
                 // event.value = 232;
@@ -207,8 +209,9 @@ class FalconFileManager {
         // Whenever an item is (double) clicked, download it
         function onItemClick(args) {
             let url = args.fileSystemItem.dataItem.url;
+            console.log(args.itemData);
             // they wanna download
-            if (args.itemData === 'download') {
+            if (args.itemData.text === 'Download') {
                 if (url) {
                     download(url);
                 }
@@ -226,13 +229,14 @@ class FalconFileManager {
         function download(url) {
             let a = document.createElement("a");
             a.href = url;
+            a.download = '';
             a.click();
         }
 
         // https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing
         function delay(callback, ms) {
             var timer = 0;
-            return function() {
+            return function () {
                 var context = this, args = arguments;
                 clearTimeout(timer);
                 timer = setTimeout(function () {
@@ -394,7 +398,6 @@ class FalconFileManager {
 
         return result;
     }
-
 
 
 }

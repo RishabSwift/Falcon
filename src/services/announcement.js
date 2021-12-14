@@ -11,7 +11,6 @@ class FalconAnnouncement {
     constructor(courseId) {
         this.courseId = courseId;
 
-
         // if currently on announcements page... and not on the user home page...
         if (FalconInterfaceInjector.pageContainsElement('form[name=announcementListForm]') && !FalconInterfaceInjector.urlContainsText('~')) {
 
@@ -90,7 +89,53 @@ class FalconAnnouncement {
         // Fix the dark mode...
     }
 
+    getAttachments(announcement) {
+
+        let attachments = announcement.attachments;
+
+        if (!attachments.length) {
+            return [];
+        }
+
+        let allAttachments = [];
+        for (let attachment of attachments) {
+            allAttachments.push({
+                name: attachment.name,
+                url: attachment.url,
+                type: attachment.type,
+            });
+        }
+
+        return allAttachments;
+    }
+
+    renderAttachments(attachments) {
+        if (!attachments.length) {
+            return "";
+        }
+        let html = '<hr><div class="pb-3">';
+        for (let i = 0; i < attachments.length; i++) {
+            let isImage = attachments[i].type.includes('image/');
+            let isPdf = attachments[i].type.includes('application/pdf');
+            let icon = isImage ? 'fe fe-image' : (isPdf ? 'fa fa-file-pdf-o' : 'fe fe-file');
+            html += `<a class="text-nowrap text-primary" href="${attachments[i].url}" target="_blank"><i class="${icon} ml-2"></i> ${attachments[i].name}</a>`
+
+            if (i !== attachments.length - 1) {
+                html += `<span class="mx-3 text-muted">·</span>`
+            }
+        }
+        // for (let attachment of attachments) {
+        //
+        // }
+        html += "</div>";
+        return html;
+    }
+
     insertAnnouncement(announcement) {
+
+        let attachments = this.getAttachments(announcement);
+        let attachmentElem = this.renderAttachments(attachments);
+        console.log(attachmentElem);
 
         let time = new Date(announcement.createdOn);
         let announcementElem = $('#falcon-announcements');
@@ -104,10 +149,10 @@ class FalconAnnouncement {
         </div>
     </div>
     <div class="card-body">
-             ${announcement.body} 
+             ${announcement.body}
+             ${attachmentElem}
     </div>
 </div>
-
         `).appendTo(announcementElem)
     }
 
