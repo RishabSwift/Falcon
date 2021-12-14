@@ -11,6 +11,9 @@
   --animate-duration: .3s !important;
 }
 
+.text-primary {
+  color: $primary !important;
+}
 
 //hide announcements to start.. commented bc issue with announcement panel in home page
 //form[name="announcementListForm"] {
