@@ -29,7 +29,6 @@
 
     <hr>
 
-
     <div class="card">
         <div class="card-body">
             <div class="row align-items-center">
@@ -41,15 +40,13 @@
                     </h6>
 
                     <!-- Heading -->
-                    <span id="status-active" class="h2 text-primary mb-0"> Active </span>
-                    <span id="status-inactive" class="h2 text-danger mb-0"> Disabled</span>
+                    <span id="status-active" class="h2 text-primary mb-0"> Active </span> <span id="status-inactive" class="h2 text-danger mb-0"> Disabled</span>
 
                 </div>
                 <div class="col-auto">
 
                     <!-- Icon -->
-                    <span id="status-active-icon" class="h2 fe fe-check text-primary mb-0"></span>
-                    <span id="status-inactive-icon" class="h2 fe fe-x text-danger mb-0"></span>
+                    <span id="status-active-icon" class="h2 fe fe-check text-primary mb-0"></span> <span id="status-inactive-icon" class="h2 fe fe-x text-danger mb-0"></span>
 
                 </div>
             </div> <!-- / .row -->
@@ -58,13 +55,26 @@
 
     <div id="falcon-alert"></div>
 
-    <button id="disable-button"   class="btn btn-danger btn-block">
+    <button id="disable-button" class="btn btn-danger btn-block">
         <i class="fe fe-pause-circle"></i> Disable Falcon
     </button>
-    <button id="enable-button"   class="btn btn-primary btn-block">
+    <button id="enable-button" class="btn btn-primary btn-block">
         <i class="fe fe-play-circle"></i> Enable Falcon
     </button>
     <hr>
+
+    <div x-data="{resetFalconShow: false, resetSuccessMessage: false}" class="text-center">
+        <a @click="resetFalconShow = true" x-show="!resetFalconShow && !resetSuccessMessage" href="javascript:;" class="btn btn-light btn-sm font-weight-bold text-danger">Reset Falcon</a>
+        <div x-show="resetFalconShow" class="reset-falcon">
+            <div class="text-danger h3 mb-1 font-weight-bold">Reset Falcon?</div>
+            <div class="text-muted">Doing so will remove all your saved course names and clear your Falcon Editor. Are you sure?</div>
+            <button @click="resetFalconShow = false" class="btn btn-link py-2 btn-sm">Cancel</button>
+            <button @click="resetSuccessMessage = true; resetFalconShow = false; " id="reset-falcon-btn" class="btn btn-link text-danger font-weight-bolder py-2 btn-sm">Reset Falcon</button>
+        </div>
+
+        <div x-show="resetSuccessMessage" class="alert alert-primary mt-3 mb-3"><h4>Falcon has been reset.</h4> Refresh your page to take effect.</div>
+
+    </div>
 
     <div class="mt-3 " id="message">
 
@@ -73,6 +83,7 @@
 </div>
 
 <script src="assets/jquery-2.2.4.min.js"></script>
+<script src="assets/alpine-3.9.0.min.js"></script>
 <script src="popup.js"></script>
 
 </body>

@@ -25,7 +25,7 @@ const Falcon = {
         Falcon.onSuccess(false);
 
         pjax = new Pjax({
-            elements: "a[href]:not(.Mrphs-sitesNav__dropdown):not(#loginLink1), form[action]:not(#Mrphs-xlogin):not(#loginForm):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form):not(#selectIndexForm)",
+            elements: "a[href]:not(.Mrphs-sitesNav__dropdown):not(#loginLink1):not(.nopjax):not([target=_blank]):not(.attachment), form[action]:not(#Mrphs-xlogin):not(#loginForm):not(#dfCompose):not(#takeAssessmentForm):not(#compose):not(#msgForum):not(#prefs_pvt_form):not(#selectIndexForm)",
             cacheBust: false,
             debug: false,
             selectors: [
@@ -71,11 +71,12 @@ const Falcon = {
         if (runOnInit) {
             FalconInterfaceInjector.initAnimations();
         }
-
+        FalconInterfaceInjector.fixAssignmentLinks();
         FalconInterfaceInjector.setActiveClassToNavigation();
         FalconInterfaceInjector.replaceIcons();
         FalconInterfaceInjector.announcementPaginationButtonsFix();
         FalconInterfaceInjector.hideFavouritesBar();
+
         // FalconInterfaceInjector.welcomeMessageAlert();
         // FalconInterfaceInjector.falconAssignments();
 
@@ -90,7 +91,7 @@ const Falcon = {
         new FalconAnnouncement(currentCourseId);
         new FalconGradebook();
 
-        // new FalconAssignments(currentCourseId);
+        new FalconAssignments(currentCourseId);
         Falcon.injectResources();
         // Needed to initiate the matchParser
 

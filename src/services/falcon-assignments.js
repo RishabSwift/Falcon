@@ -16,8 +16,8 @@ class FalconAssignments {
 
     }
 
-    async setupAssignments() {
 
+    async setupAssignments() {
 
 //         fetch(`/direct/assignment/site/${this.courseId}.json`)
 //             .then(response => response.json())

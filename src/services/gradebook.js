@@ -19,7 +19,6 @@ class FalconGradebook {
     }
 
     getEmojiForGrade(grade, outOf) {
-        console.log(grade, outOf);
         if (grade === outOf) {
             return '💯'
         }
@@ -30,6 +29,10 @@ class FalconGradebook {
 
         if (grade > outOf) {
             return '👀';
+        }
+
+        if (grade === '69') {
+            return '😉'
         }
 
         if (grade / outOf < 0.5) {

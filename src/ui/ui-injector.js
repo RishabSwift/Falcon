@@ -246,6 +246,17 @@ const FalconInterfaceInjector = {
         }
     },
 
+    // Fix attachments from opening in the same page...
+    fixAssignmentLinks() {
+        if ($('ul.attachList li a').length === 0) {
+            return;
+        }
+
+        $('ul.attachList li a').each(function() {
+            $(this).addClass('nopjax');
+        })
+    },
+
     // determine if the current page title in UI matches
     isCurrentPageTitle(title, elem = '.page-header h1') {
         return $(elem).text().includes(title);
