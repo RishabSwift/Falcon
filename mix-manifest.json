@@ -11,6 +11,7 @@
     "/dist/chrome/assets/falcon-dark.css": "/dist/chrome/assets/falcon-dark.css",
     "/dist/chrome/assets/popup-app.css": "/dist/chrome/assets/popup-app.css",
     "/dist/chrome/assets/jquery-2.2.4.min.js": "/dist/chrome/assets/jquery-2.2.4.min.js",
+    "/dist/chrome/assets/alpine-3.9.0.min.js": "/dist/chrome/assets/alpine-3.9.0.min.js",
     "/dist/chrome/assets/redirect-handler.js": "/dist/chrome/assets/redirect-handler.js",
     "/dist/chrome/images/falcon-128x128.png": "/dist/chrome/images/falcon-128x128.png",
     "/dist/chrome/images/falcon-16x16.png": "/dist/chrome/images/falcon-16x16.png",

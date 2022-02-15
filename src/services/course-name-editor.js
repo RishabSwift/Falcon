@@ -1,6 +1,5 @@
 import FalconStorage from "./storage";
 import FalconInterfaceInjector from "../ui/ui-injector";
-import {custom} from "devextreme/ui/dialog";
 
 class FalconCourseNameEditor {
 

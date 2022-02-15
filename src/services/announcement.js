@@ -124,9 +124,6 @@ class FalconAnnouncement {
                 html += `<span class="mx-3 text-muted">·</span>`
             }
         }
-        // for (let attachment of attachments) {
-        //
-        // }
         html += "</div>";
         return html;
     }
@@ -135,7 +132,6 @@ class FalconAnnouncement {
 
         let attachments = this.getAttachments(announcement);
         let attachmentElem = this.renderAttachments(attachments);
-        console.log(attachmentElem);
 
         let time = new Date(announcement.createdOn);
         let announcementElem = $('#falcon-announcements');

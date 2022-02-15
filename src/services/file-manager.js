@@ -62,12 +62,6 @@ class FalconFileManager {
 
         let result = await this.getResourcesForCourse();
 
-        // $('#file-manager-search').dxTextBox({
-        //    value: 'lol',
-        //     showClearButton: true,
-        // });
-
-
         function searchResources(searchText) {
             const localData = [...result];
 
@@ -105,11 +99,6 @@ class FalconFileManager {
             currentPath: this.currentCourse,
             contextMenu: {
                 items: [
-                    // Specify a predefined item's name and optional settings
-                    // {
-                    //     name: "download",
-                    //     visible: true,
-                    // },
                     {
                         text: 'Download',
                         icon: 'download',
@@ -198,18 +187,12 @@ class FalconFileManager {
                 setTimeout(function () {
                     falconFileManager.option('fileSystemProvider', searchResult);
                 }, 500);
-
-
-                // event.value = 232;
-                // console.log(event);
-                // $('input[name=file-manager-search]').option
             },
         })
 
         // Whenever an item is (double) clicked, download it
         function onItemClick(args) {
             let url = args.fileSystemItem.dataItem.url;
-            console.log(args.itemData);
             // they wanna download
             if (args.itemData.text === 'Download') {
                 if (url) {

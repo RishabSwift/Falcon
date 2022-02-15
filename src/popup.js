@@ -21,15 +21,8 @@ let inactiveIcon = $('#status-inactive-icon');
             : resolve(result)
     )
 )).then(response => {
-    console.log(response);
+    updateButtonVisibility(response.falconEnabled);
 });
-
-enableButton.on('click', function() {
-    toggleButton(false);
-})
-disableButton.on('click', function() {
-    toggleButton(false);
-})
 
 
 function updateButtonVisibility(isEnabled) {
@@ -40,11 +33,6 @@ function updateButtonVisibility(isEnabled) {
         inactiveText.hide();
         activeIcon.show();
         inactiveIcon.hide();
-
-
-
-
-
     } else {
         enableButton.show();
         disableButton.hide();
@@ -52,22 +40,22 @@ function updateButtonVisibility(isEnabled) {
         activeText.hide();
         inactiveIcon.show();
         activeIcon.hide();
-
-
-
-
     }
 }
+
+$('#reset-falcon-btn').on('click', function() {
+    chrome.storage.sync.clear();
+})
 
 function toggleButton(enable) {
     backgroundPage.isExtensionOn = enable;
 
     updateButtonVisibility(backgroundPage.isExtensionOn);
+    chrome.tabs.executeScript(null, {file: './assets/redirect-handler.js'})
 }
 
 chrome.runtime.getBackgroundPage(function (bgPage) {
     backgroundPage = bgPage;
-    updateButtonVisibility(bgPage.isExtensionOn);
 
     enableButton.on('click', function() {
         $('#falcon-alert').html(`<div class="alert alert-primary mt-3 mb-3"><h4>Falcon is active.</h4> Refresh your page to take effect.`)

@@ -1,37 +1,6 @@
 const Core = {
 
     formatDateTime: (date) => {
-
-        // const months = [
-        //     'January',
-        //     'February',
-        //     'March',
-        //     'April',
-        //     'May',
-        //     'June',
-        //     'July',
-        //     'August',
-        //     'September',
-        //     'October',
-        //     'November',
-        //     'December'
-        // ]
-        //
-        // const days = [
-        //     'Sun',
-        //     'Mon',
-        //     'Tue',
-        //     'Wed',
-        //     'Thu',
-        //     'Fri',
-        //     'Sat'
-        // ]
-        //
-        // const monthName = months[d.getMonth()]
-        // const dayName = days[d.getDay()] // Thu
-        // const year = d.getFullYear() // 2019
-        //
-        // return `${dayName}, ${date} ${monthName} ${year}`
         const options = {year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'};
         return date.toLocaleDateString('en-US', options);
 
